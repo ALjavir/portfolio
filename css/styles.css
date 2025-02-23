@@ -10971,18 +10971,6 @@ section.resume-section .resume-section-content {
   }
 }
 
-.card-container {
-  display: grid;
-  grid-template-columns: 
-      repeat(auto-fit, minmax(100px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  border-radius: 5px;
-  padding: 20px;
-  box-sizing: border-box;
-}
 
 table, th, td {
   margin-top: 5%;
