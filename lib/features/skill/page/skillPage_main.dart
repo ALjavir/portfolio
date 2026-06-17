@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:portfolio/animation/ani.dart';
 import 'package:portfolio/animation/smoothRevealWidget_animation.dart';
 import 'package:portfolio/features/home/controller/homePage_controller.dart';
@@ -16,38 +17,25 @@ class SkillpageMain extends StatefulWidget {
 
 class _SkillMainState extends State<SkillpageMain> {
   final HomepageController homepageController = Get.find<HomepageController>();
+
   @override
   Widget build(BuildContext context) {
+    print(homepageController.showList.length);
     return Scaffold(
-      body: FutureBuilder(
-        future: homepageController.logoData,
-
-        builder: (context, snapshot) {
-          // LOADING
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: lottieImage(IconStyle.primaryLoading(), 180));
-          }
-
-          // ERROR
-          if (snapshot.hasError ||
-              !snapshot.hasData ||
-              snapshot.data!.isEmpty) {
-            return Center(child: lottieImage(IconStyle.error(), 180));
-          }
-
-          final skills = snapshot.data!;
-
+      body:
           // SUCCESS
-          return SmoothrevealwidgetAnimation(
+          SmoothrevealwidgetAnimation(
             delay: Duration(seconds: 3),
-            child: SimpleBentoGrid(
-              items: skills
+            child: Obx(() {
+              if (homepageController.isLoading.value) {
+                return CircularProgressIndicator();
+              }
+              final items = homepageController.showList
                   .map((s) => BentoItemData(title: s.name, description: s.text))
-                  .toList(),
-            ),
-          );
-        },
-      ),
+                  .toList();
+              return SimpleBentoGrid(items: items);
+            }),
+          ),
     );
   }
 }

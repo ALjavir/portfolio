@@ -1,22 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:portfolio/features/home/model/skill_model.dart';
 
-class HomepageController {
+class HomepageController extends GetxController {
   late Future<List<skillModelHome>> logoData;
 
-  // late List<skillModelHome> emptyList;
-  //   late  List<skillModelHome> fullList;
+  final showList = <skillModelHome>[].obs;
+  final emptyList = <skillModelHome>[].obs;
 
-  //   skillPagecont(){
-
-  //   }
+  final isLoading = true.obs;
 
   HomepageController() {
-    logoData = Future.delayed(
-      const Duration(milliseconds: 1500),
-      () => fetchSkillData(),
-    );
+    logoData = fetchSkillData();
+    isLoading.value = false;
+
+    //Future.delayed(const Duration(milliseconds: 1500), () => fetchSkillData());
   }
 
   Future<List<skillModelHome>> fetchSkillData() async {
@@ -50,6 +49,14 @@ class HomepageController {
         );
 
         fullList.add(singleData);
+      }
+
+      for (var i in fullList) {
+        if (i.text.isEmpty) {
+          emptyList.add(i);
+        } else {
+          showList.add(i);
+        }
       }
 
       final skills = fullList;
