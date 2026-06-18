@@ -5,8 +5,6 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:portfolio/animation/ani.dart';
 import 'package:portfolio/animation/smoothRevealWidget_animation.dart';
 import 'package:portfolio/features/home/controller/homePage_controller.dart';
-import 'package:portfolio/style/icon_style.dart';
-import 'package:portfolio/theme/gWidget/global_widget.dart';
 
 class SkillpageMain extends StatefulWidget {
   const SkillpageMain({super.key});
