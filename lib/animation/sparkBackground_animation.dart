@@ -177,8 +177,8 @@ class _SparkEffectState extends State<SparkbackgroundAnimation>
           child: Container(
             width: double.infinity,
             height: double.infinity,
-            color: Colors
-                .transparent, // Matches: background: 'transparent' [cite: 17]
+            color:
+                Colors.black, // Matches: background: 'transparent' [cite: 17]
             child: CustomPaint(
               painter: _SparkPainter(
                 sparks: _sparks,

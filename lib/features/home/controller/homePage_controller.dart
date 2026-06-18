@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/features/home/model/skill_model.dart';
+import 'package:portfolio/features/home/model/home_model.dart';
+import 'package:portfolio/features/skill/model/skill_model.dart';
 
 class HomepageController extends GetxController {
   late Future<List<skillModelHome>> logoData;
+
+  Map<String, dynamic>? skillPageData;
 
   final showList = <skillModelHome>[].obs;
   final emptyList = <skillModelHome>[].obs;
@@ -32,7 +35,9 @@ class HomepageController extends GetxController {
         return [];
       }
 
-      final getSkilData = SkillRowModel.fromJson(finalResult);
+      final getSkilData = SkillRowSuperModel.fromJson(finalResult);
+
+      skillPageData = getSkilData.skillDetail;
 
       final Map<String, dynamic> fullDataMap = getSkilData.data;
       //  print(fullDataMap.entries);
@@ -62,14 +67,33 @@ class HomepageController extends GetxController {
       final skills = fullList;
 
       // 2. Precache all SVGs over the network
+      // await Future.wait(
+      //   skills.map((skill) async {
+      //     // Note: This syntax is for flutter_svg version 2.0.0 and newer
+      //     final loader = SvgNetworkLoader(skill.image);
+      //     await svg.cache.putIfAbsent(
+      //       loader.cacheKey(null),
+      //       () => loader.loadBytes(null),
+      //     );
+      //   }),
+      // );
+
       await Future.wait(
         skills.map((skill) async {
-          // Note: This syntax is for flutter_svg version 2.0.0 and newer
-          final loader = SvgNetworkLoader(skill.image);
-          await svg.cache.putIfAbsent(
-            loader.cacheKey(null),
-            () => loader.loadBytes(null),
-          );
+          try {
+            final loader = SvgNetworkLoader(skill.image);
+
+            await svg.cache.putIfAbsent(
+              loader.cacheKey(null),
+              () => loader.loadBytes(null),
+            );
+
+            // print("Loaded: ${skill.name}");
+          } catch (e) {
+            // print("Failed: ${skill.name}");
+            // print(skill.image);
+            print(e);
+          }
         }),
       );
 

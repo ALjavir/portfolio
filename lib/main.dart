@@ -75,7 +75,7 @@ class _mainPageState extends State<mainPage> {
         globalKeyProject: () => scrollTo(projectKey),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        //  padding: EdgeInsets.symmetric(horizontal: 20),
         controller: scrollController,
         child: Column(
           children: [

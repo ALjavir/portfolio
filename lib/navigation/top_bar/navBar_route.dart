@@ -34,9 +34,10 @@ class _NavbarRouteState extends State<NavbarRoute> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black,
       forceMaterialTransparency: true,
-      surfaceTintColor: Colors.transparent,
+      surfaceTintColor: Colors.black,
+      shadowColor: Colors.black,
 
       toolbarHeight: 90,
       automaticallyImplyLeading: false,

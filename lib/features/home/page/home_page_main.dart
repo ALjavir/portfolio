@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/animation/ani2.dart';
 import 'package:portfolio/animation/smoothRevealWidget_animation.dart';
 import 'package:portfolio/animation/sparkBackground_animation.dart';
 import 'package:portfolio/features/home/page/widget/homePage_header.dart';
@@ -17,30 +18,26 @@ class _HomePageMainState extends State<HomePageMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       // appBar: TopBar(),
-      body: Stack(
-        children: [
-          const SparkbackgroundAnimation(
-            // You can customize the look here:
-            amount: 500,
-            speed: 0.01,
-            randColor: false, // Set to false if you want uniform colors
+      body: DiagonalWaveBackground(
+        child: Center(
+          child: Column(
+            spacing: 100,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: HomepageHeader(),
+              ),
+              HomepageSkill(),
+              SmoothrevealwidgetAnimation(
+                delay: Duration(seconds: 5),
+                child: scrollD(),
+              ),
+            ],
           ),
-          Center(
-            child: Column(
-              spacing: 100,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                HomepageHeader(),
-                HomepageSkill(),
-                SmoothrevealwidgetAnimation(
-                  delay: Duration(seconds: 5),
-                  child: scrollD(),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

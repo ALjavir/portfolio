@@ -1,12 +1,3 @@
-class SkillRowModel {
-  final Map<String, dynamic> data;
-
-  SkillRowModel({required this.data});
-
-  factory SkillRowModel.fromJson(Map<String, dynamic> data) =>
-      SkillRowModel(data: data['data'] ?? {});
-}
-
 class skillModelHome {
   final String name;
   final String image;
