@@ -14,7 +14,7 @@ class SkillRowSuperModel {
 class SkillPageModel {
   final List<dynamic> tech;
   final String text;
-  final int score;
+  final double score;
   final int index;
   final String name;
   SkillPageModel({
@@ -30,6 +30,6 @@ class SkillPageModel {
     text: data['text'] ?? '',
     index: data['index'] ?? 0,
     name: data['name'] ?? '',
-    score: data['score'] ?? 0,
+    score: data['score'] ?? 0.0,
   );
 }

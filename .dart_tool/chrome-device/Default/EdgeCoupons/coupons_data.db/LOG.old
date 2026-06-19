@@ -1,51 +1,57 @@
-2026/06/19-03:18:06.100 4114 Reusing MANIFEST C:\Users\Javir\AppData\Local\Temp\flutter_tools.42f8572f\flutter_tools_chrome_device.52880536\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
-2026/06/19-03:18:06.101 4114 Recovering log #68
-2026/06/19-03:18:06.101 4114 Reusing old log C:\Users\Javir\AppData\Local\Temp\flutter_tools.42f8572f\flutter_tools_chrome_device.52880536\Default\EdgeCoupons/coupons_data.db/000068.log 
-2026/06/19-03:18:06.102 4114 Delete type=0 #4
-2026/06/19-03:18:06.102 4114 Delete type=0 #7
-2026/06/19-03:18:06.102 4114 Delete type=2 #8
-2026/06/19-03:18:06.102 4114 Delete type=0 #10
-2026/06/19-03:18:06.102 4114 Delete type=2 #11
-2026/06/19-03:18:06.102 4114 Delete type=0 #13
-2026/06/19-03:18:06.102 4114 Delete type=2 #14
-2026/06/19-03:18:06.123 4114 Delete type=0 #16
-2026/06/19-03:18:06.141 4114 Delete type=2 #17
-2026/06/19-03:18:06.143 4114 Delete type=0 #19
-2026/06/19-03:18:06.143 4114 Delete type=2 #21
-2026/06/19-03:18:06.143 4114 Delete type=0 #23
-2026/06/19-03:18:06.147 4114 Delete type=2 #24
-2026/06/19-03:18:06.147 4114 Delete type=0 #26
-2026/06/19-03:18:06.183 4114 Delete type=2 #27
-2026/06/19-03:18:06.184 4114 Delete type=0 #29
-2026/06/19-03:18:06.185 4114 Delete type=2 #30
-2026/06/19-03:18:06.186 4114 Delete type=0 #32
-2026/06/19-03:18:06.187 4114 Delete type=2 #34
-2026/06/19-03:18:06.187 4114 Delete type=0 #36
-2026/06/19-03:18:06.187 4114 Delete type=2 #37
-2026/06/19-03:18:06.187 4114 Delete type=0 #39
-2026/06/19-03:18:06.187 4114 Delete type=2 #40
-2026/06/19-03:18:06.188 4114 Delete type=0 #42
-2026/06/19-03:18:06.188 4114 Delete type=2 #43
-2026/06/19-03:18:06.189 4114 Delete type=0 #45
-2026/06/19-03:18:06.189 4114 Delete type=2 #47
-2026/06/19-03:18:06.189 4114 Delete type=0 #49
-2026/06/19-03:18:06.189 4114 Delete type=2 #50
-2026/06/19-03:18:06.208 4114 Delete type=0 #52
-2026/06/19-03:18:06.208 4114 Delete type=2 #53
-2026/06/19-03:18:06.210 4114 Delete type=0 #55
-2026/06/19-03:18:06.210 4114 Delete type=2 #56
-2026/06/19-03:18:06.210 4114 Delete type=0 #58
-2026/06/19-03:18:06.210 4114 Delete type=0 #62
-2026/06/19-03:18:06.210 4114 Delete type=0 #65
-2026/06/19-03:18:06.407 2bec Level-0 table #72: started
-2026/06/19-03:18:06.410 2bec Level-0 table #72: 682784 bytes OK
-2026/06/19-03:18:06.412 2bec Delete type=0 #68
-2026/06/19-03:18:06.412 124c Compacting 4@0 + 1@1 files
-2026/06/19-03:18:06.416 124c Generated table #73@0: 3 keys, 682784 bytes
-2026/06/19-03:18:06.416 124c Compacted 4@0 + 1@1 files => 682784 bytes
-2026/06/19-03:18:06.416 124c compacted to: files[ 0 1 1 0 0 0 0 ]
-2026/06/19-03:18:06.417 124c Delete type=2 #60
-2026/06/19-03:18:06.417 124c Delete type=2 #63
-2026/06/19-03:18:06.417 124c Delete type=2 #66
-2026/06/19-03:18:06.417 124c Delete type=2 #69
-2026/06/19-03:18:06.417 124c Delete type=2 #72
+2026/06/20-05:00:25.304 b38 Reusing MANIFEST C:\Users\Javir\AppData\Local\Temp\flutter_tools.315bc9e1\flutter_tools_chrome_device.e16d3f8\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/06/20-05:00:25.308 b38 Recovering log #91
+2026/06/20-05:00:25.309 b38 Reusing old log C:\Users\Javir\AppData\Local\Temp\flutter_tools.315bc9e1\flutter_tools_chrome_device.e16d3f8\Default\EdgeCoupons/coupons_data.db/000091.log 
+2026/06/20-05:00:25.310 b38 Delete type=0 #4
+2026/06/20-05:00:25.310 b38 Delete type=0 #7
+2026/06/20-05:00:25.310 b38 Delete type=2 #8
+2026/06/20-05:00:25.310 b38 Delete type=0 #10
+2026/06/20-05:00:25.310 b38 Delete type=2 #11
+2026/06/20-05:00:25.310 b38 Delete type=0 #13
+2026/06/20-05:00:25.310 b38 Delete type=2 #14
+2026/06/20-05:00:25.310 b38 Delete type=0 #16
+2026/06/20-05:00:25.335 b38 Delete type=2 #17
+2026/06/20-05:00:25.336 b38 Delete type=0 #19
+2026/06/20-05:00:25.336 b38 Delete type=2 #21
+2026/06/20-05:00:25.337 b38 Delete type=0 #23
+2026/06/20-05:00:25.337 b38 Delete type=2 #24
+2026/06/20-05:00:25.337 b38 Delete type=0 #26
+2026/06/20-05:00:25.337 b38 Delete type=2 #27
+2026/06/20-05:00:25.337 b38 Delete type=0 #29
+2026/06/20-05:00:25.337 b38 Delete type=2 #30
+2026/06/20-05:00:25.337 b38 Delete type=0 #32
+2026/06/20-05:00:25.337 b38 Delete type=2 #34
+2026/06/20-05:00:25.338 b38 Delete type=0 #36
+2026/06/20-05:00:25.338 b38 Delete type=2 #37
+2026/06/20-05:00:25.339 b38 Delete type=0 #39
+2026/06/20-05:00:25.339 b38 Delete type=2 #40
+2026/06/20-05:00:25.339 b38 Delete type=0 #42
+2026/06/20-05:00:25.362 b38 Delete type=2 #43
+2026/06/20-05:00:25.363 b38 Delete type=0 #45
+2026/06/20-05:00:25.363 b38 Delete type=2 #47
+2026/06/20-05:00:25.363 b38 Delete type=0 #49
+2026/06/20-05:00:25.363 b38 Delete type=2 #50
+2026/06/20-05:00:25.363 b38 Delete type=0 #52
+2026/06/20-05:00:25.363 b38 Delete type=2 #53
+2026/06/20-05:00:25.363 b38 Delete type=0 #55
+2026/06/20-05:00:25.378 b38 Delete type=2 #56
+2026/06/20-05:00:25.380 b38 Delete type=0 #58
+2026/06/20-05:00:25.394 b38 Delete type=2 #60
+2026/06/20-05:00:25.395 b38 Delete type=0 #62
+2026/06/20-05:00:25.407 b38 Delete type=2 #63
+2026/06/20-05:00:25.409 b38 Delete type=0 #65
+2026/06/20-05:00:25.411 b38 Delete type=2 #66
+2026/06/20-05:00:25.411 b38 Delete type=0 #68
+2026/06/20-05:00:25.413 b38 Delete type=2 #69
+2026/06/20-05:00:25.413 b38 Delete type=0 #71
+2026/06/20-05:00:25.414 b38 Delete type=2 #73
+2026/06/20-05:00:25.417 b38 Delete type=0 #75
+2026/06/20-05:00:25.417 b38 Delete type=2 #76
+2026/06/20-05:00:25.417 b38 Delete type=0 #78
+2026/06/20-05:00:25.417 b38 Delete type=2 #79
+2026/06/20-05:00:25.417 b38 Delete type=0 #81
+2026/06/20-05:00:25.417 b38 Delete type=2 #82
+2026/06/20-05:00:25.417 b38 Delete type=0 #84
+2026/06/20-05:00:25.417 b38 Delete type=0 #88
+2026/06/20-05:01:46.555 26dc Level-0 table #95: started
+2026/06/20-05:01:46.558 26dc Level-0 table #95: 682784 bytes OK
+2026/06/20-05:01:46.559 26dc Delete type=0 #91

@@ -23,50 +23,39 @@ class _ProjectMainState extends State<ProjectMain> {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 60,
       children: [
-        SmoothrevealwidgetAnimation(
-          delay: Duration(seconds: 1),
-          child: RichText(
-            text: TextSpan(
-              children: [
-                WidgetSpan(
-                  child: ScrambletextAnimation(
-                    text: "// ",
+        RichText(
+          text: TextSpan(
+            children: [
+              WidgetSpan(
+                child: ScrambletextAnimation(
+                  text: "// ",
 
-                    style: Fontstyle.subFont(
-                      36,
-                      ColorStyle.red,
-                      FontWeight.w900,
-                    ),
+                  style: Fontstyle.subFont(36, ColorStyle.red, FontWeight.w900),
+                ),
+              ),
+
+              WidgetSpan(
+                child: ScrambletextAnimation(
+                  text: "PROJECT",
+
+                  style: Fontstyle.primaryFont(
+                    36,
+
+                    Theme.of(context).colorScheme.onSurface,
+
+                    FontWeight.w500,
                   ),
                 ),
+              ),
 
-                WidgetSpan(
-                  child: ScrambletextAnimation(
-                    text: "PROJECT",
+              WidgetSpan(
+                child: ScrambletextAnimation(
+                  text: ".",
 
-                    style: Fontstyle.primaryFont(
-                      36,
-
-                      Theme.of(context).colorScheme.onSurface,
-
-                      FontWeight.w500,
-                    ),
-                  ),
+                  style: Fontstyle.subFont(36, ColorStyle.red, FontWeight.w900),
                 ),
-
-                WidgetSpan(
-                  child: ScrambletextAnimation(
-                    text: ".",
-
-                    style: Fontstyle.subFont(
-                      36,
-                      ColorStyle.red,
-                      FontWeight.w900,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
 

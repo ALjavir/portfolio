@@ -1,309 +1,412 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: deprecated_member_use
 
-class BentoItemData {
+import 'dart:math' as math;
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:portfolio/style/font_style.dart';
+
+class GlowingSkewCard extends StatefulWidget {
   final String title;
   final String description;
+  final List tech;
+  final double score;
+  final Color gradientFrom;
+  final Color gradienMiddle;
+  final Color gradientTo;
 
-  const BentoItemData({required this.title, required this.description});
+  const GlowingSkewCard({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.gradientFrom,
+    required this.gradientTo,
+    required this.tech,
+    required this.score,
+    required this.gradienMiddle,
+  });
+
+  @override
+  State<GlowingSkewCard> createState() => _GlowingSkewCardState();
 }
 
-class SimpleBentoGrid extends StatelessWidget {
-  final List<BentoItemData> items;
-  final double spacing;
+class _GlowingSkewCardState extends State<GlowingSkewCard>
+    with TickerProviderStateMixin {
+  late AnimationController _hoverController;
+  late AnimationController _floatController;
+  bool _isHovered = false;
 
-  const SimpleBentoGrid({super.key, required this.items, this.spacing = 20.0});
+  @override
+  void initState() {
+    super.initState();
+    // 500ms transition matching duration-500
+    _hoverController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+
+    // Infinite loop for the floating blob effect
+    _floatController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 4),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _hoverController.dispose();
+    _floatController.dispose();
+    super.dispose();
+  }
+
+  void _handleHover(bool hovering) {
+    setState(() {
+      _isHovered = hovering;
+      if (_isHovered) {
+        _hoverController.forward();
+      } else {
+        _hoverController.reverse();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (items.isEmpty) {
-      return const Center(child: Text("No items available in the list."));
-    }
+    const double cardWidth = 400.0;
+    const double cardHeight = 300.0;
+    const double skewAngleAtRest = 18.0 * math.pi / 180.0;
 
-    return Padding(
-      padding: const EdgeInsets.all(24.0),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          if (constraints.maxWidth > 900) {
-            return _buildDynamicDesktopLayout();
-          } else if (constraints.maxWidth > 600) {
-            return _buildDynamicTabletLayout();
-          } else {
-            return _buildDynamicMobileLayout();
-          }
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _handleHover(!_isHovered);
+        });
+      },
+
+      // onHover: (value) {
+      //   setState(() {
+      //     _handleHover(!_isHovered);
+      //   });
+      // },
+      child: AnimatedBuilder(
+        animation: Listenable.merge([_hoverController, _floatController]),
+        builder: (context, child) {
+          final double hoverVal = _hoverController.value;
+          final double floatVal = _floatController.value;
+
+          // Interpolations for Skewed Panels
+          final double panelLeft = lerpDouble(70.0, 46.0, hoverVal)!;
+          final double panelWidth = lerpDouble(
+            cardWidth * 0.5,
+            cardWidth - 90.0,
+            hoverVal,
+          )!;
+          final double currentSkew = lerpDouble(
+            skewAngleAtRest,
+            0.0,
+            hoverVal,
+          )!;
+
+          // FIX 1: Smoothly animate the card height instead of an instant snap back
+          final double currentCardHeight = lerpDouble(
+            cardHeight,
+            cardHeight,
+            hoverVal,
+          )!;
+
+          // Interpolations for Content Shifting & Padding
+          final double contentBottom = lerpDouble(0.0, -150.0, hoverVal)!;
+          final double contentPaddingTopBottom = lerpDouble(
+            20.0,
+            40.0,
+            hoverVal,
+          )!; // Adjusted max slightly for safe layout space
+
+          // Organic mathematical calculations for infinite blob floating paths
+          final double floatX1 =
+              math.sin(floatVal * 2 * math.pi) * -10 * hoverVal;
+          final double floatY1 =
+              math.cos(floatVal * 2 * math.pi) * 10 * hoverVal;
+          final double floatX2 =
+              math.sin((floatVal * 2 * math.pi) + math.pi) * -10 * hoverVal;
+          final double floatY2 =
+              math.cos((floatVal * 2 * math.pi) + math.pi) * 10 * hoverVal;
+
+          // Blob 1 (Top Left) Positioning
+          final double blob1Size = lerpDouble(0.0, 100.0, hoverVal)!;
+          final double blob1Top = lerpDouble(0.0, -50.0, hoverVal)! + floatY1;
+          final double blob1Left = lerpDouble(50.0, 60.0, hoverVal)! + floatX1;
+
+          // Blob 2 (Bottom Right) Positioning
+          final double blob2Size = lerpDouble(0.0, 100.0, hoverVal)!;
+          final double blob2Bottom =
+              lerpDouble(0.0, -200.0, hoverVal)! + floatY2;
+          final double blob2Right = lerpDouble(0.0, 60.0, hoverVal)! + floatX2;
+
+          return SizedBox(
+            width: cardWidth,
+            // Match the outer boundary to the current animated height
+            height: currentCardHeight,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                // 1. Glowing Aura Layer
+                Positioned(
+                  top: 0,
+                  left: panelLeft,
+                  width: panelWidth,
+                  height: currentCardHeight + 150,
+                  child: ImageFiltered(
+                    imageFilter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: Transform(
+                      transform: Matrix4.skewX(currentSkew),
+                      alignment: Alignment.center,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomRight,
+                            end: Alignment.topLeft,
+                            colors: [
+                              widget.gradientFrom,
+                              widget.gradienMiddle,
+                              widget.gradientTo,
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                // 2. Crisp Skewed Gradient Panel Layer
+                Positioned(
+                  top: 0,
+                  left: panelLeft,
+                  width: panelWidth,
+                  height: currentCardHeight + 150,
+                  child: Transform(
+                    transform: Matrix4.skewX(currentSkew),
+                    alignment: Alignment.center,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomRight,
+                          end: Alignment.topLeft,
+                          colors: [widget.gradientFrom, widget.gradientTo],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                // 3. Animated Blob 1 (Top-Left)
+                if (hoverVal > 0.01)
+                  Positioned(
+                    top: blob1Top,
+                    left: blob1Left,
+                    width: blob1Size,
+                    height: blob1Size,
+                    child: Opacity(opacity: hoverVal, child: const GlassBlob()),
+                  ),
+
+                // 4. Animated Blob 2 (Bottom-Right)
+                if (hoverVal > 0.01)
+                  Positioned(
+                    bottom: blob2Bottom,
+                    right: blob2Right,
+                    width: blob2Size,
+                    height: blob2Size,
+                    child: Opacity(opacity: hoverVal, child: const GlassBlob()),
+                  ),
+
+                // 5. Glassmorphic Content Card Layer
+                AnimatedPositioned(
+                  duration: const Duration(milliseconds: 200),
+                  //top: 0,
+                  curve: Curves.easeIn,
+
+                  bottom: contentBottom,
+                  width: cardWidth,
+                  height: _isHovered
+                      ? currentCardHeight + 150
+                      : currentCardHeight,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      child: Stack(
+                        alignment: AlignmentGeometry.topRight,
+                        children: [
+                          Container(
+                            // Ensure the container fills the animated height bounds smoothly
+                            width: double.infinity,
+                            height: double.infinity,
+                            padding: EdgeInsets.symmetric(
+                              vertical: contentPaddingTopBottom,
+                              horizontal: 20,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.05),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.1),
+                                width: 1,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.12),
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 10),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              spacing: 12,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  widget.title,
+                                  style: Fontstyle.primaryFont(
+                                    28,
+                                    Colors.white,
+                                    FontWeight.normal,
+                                  ),
+                                ),
+                                Wrap(
+                                  spacing: 6.0,
+                                  runSpacing: 6.0,
+                                  children: widget.tech.map((skill) {
+                                    return Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white30,
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        skill,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                                Flexible(
+                                  child: AnimatedDefaultTextStyle(
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeInOut,
+                                    style: Fontstyle.subFont(
+                                      18,
+                                      Colors.white70,
+                                      FontWeight.normal,
+                                    ),
+                                    child: Text(
+                                      widget.description,
+                                      maxLines: _isHovered ? 100 : 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
+                                AnimatedContainer(
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                  height: _isHovered
+                                      ? 0
+                                      : 22, // Instantly collapses layout bounds to let full text occupy space on hover
+                                  child: AnimatedOpacity(
+                                    duration: const Duration(milliseconds: 200),
+                                    // Adds a slight micro-delay alignment when fading back in
+                                    opacity: _isHovered ? 0.0 : 1.0,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 2.0),
+                                      child: Text(
+                                        "See more →",
+                                        style: Fontstyle.subFont(
+                                          14,
+                                          Colors.white,
+                                          FontWeight.normal,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                //const SizedBox(height: 8),
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    widget.score.toString(),
+                                    style: Fontstyle.subFont(
+                                      20,
+                                      Colors.white,
+                                      FontWeight.normal,
+                                    ),
+                                  ),
+                                  Text(
+                                    " / 10",
+                                    style: Fontstyle.subFont(
+                                      20,
+                                      Colors.white30,
+                                      FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
         },
       ),
     );
   }
 
-  // ==========================================
-  // DYNAMIC DESKTOP LAYOUT (Repeats every 5 items)
-  // ==========================================
-  Widget _buildDynamicDesktopLayout() {
-    List<Widget> gridRows = [];
-
-    // Loops through the list in steps of 5
-    for (int i = 0; i < items.length; i += 5) {
-      int remaining = items.length - i;
-
-      // 1. First Row of the pattern Block: 2:1 Asymmetric Split
-      if (remaining >= 2) {
-        gridRows.add(
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 2,
-                child: SimpleBentoCard(
-                  title: items[i].title,
-                  description: items[i].description,
-                  forcedHeight: 260,
-                ),
-              ),
-              SizedBox(width: spacing),
-              Expanded(
-                flex: 1,
-                child: SimpleBentoCard(
-                  title: items[i + 1].title,
-                  description: items[i + 1].description,
-                  forcedHeight: 260,
-                ),
-              ),
-            ],
-          ),
-        );
-        gridRows.add(SizedBox(height: spacing));
-      } else if (remaining == 1) {
-        // If only 1 item left, fill full width
-        gridRows.add(
-          SimpleBentoCard(
-            title: items[i].title,
-            description: items[i].description,
-            forcedHeight: 260,
-          ),
-        );
-        gridRows.add(SizedBox(height: spacing));
-        break;
-      }
-
-      // 2. Second Row of the pattern Block: Full-Width Belt
-      if (remaining >= 3) {
-        gridRows.add(
-          SimpleBentoCard(
-            title: items[i + 2].title,
-            description: items[i + 2].description,
-            forcedHeight: 160,
-          ),
-        );
-        gridRows.add(SizedBox(height: spacing));
-      }
-
-      // 3. Third Row of the pattern Block: 1:1 Equal Split
-      if (remaining == 4) {
-        // If only 1 item left in this block sequence
-        gridRows.add(
-          SimpleBentoCard(
-            title: items[i + 3].title,
-            description: items[i + 3].description,
-            forcedHeight: 220,
-          ),
-        );
-        gridRows.add(SizedBox(height: spacing));
-      } else if (remaining >= 5) {
-        gridRows.add(
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: SimpleBentoCard(
-                  title: items[i + 3].title,
-                  description: items[i + 3].description,
-                  forcedHeight: 220,
-                ),
-              ),
-              SizedBox(width: spacing),
-              Expanded(
-                child: SimpleBentoCard(
-                  title: items[i + 4].title,
-                  description: items[i + 4].description,
-                  forcedHeight: 220,
-                ),
-              ),
-            ],
-          ),
-        );
-        gridRows.add(SizedBox(height: spacing));
-      }
-    }
-
-    // Wrap in a Column inside a scrollview container to keep layout clean
-    return Column(children: gridRows);
-  }
-
-  // ==========================================
-  // DYNAMIC TABLET LAYOUT (Balanced 2-Column Repeat)
-  // ==========================================
-  Widget _buildDynamicTabletLayout() {
-    List<Widget> gridRows = [];
-
-    // Form pairs of 2 items each dynamically
-    for (int i = 0; i < items.length; i += 2) {
-      int remaining = items.length - i;
-
-      if (remaining >= 2) {
-        gridRows.add(
-          Row(
-            children: [
-              Expanded(
-                child: SimpleBentoCard(
-                  title: items[i].title,
-                  description: items[i].description,
-                  forcedHeight: 220,
-                ),
-              ),
-              SizedBox(width: spacing),
-              Expanded(
-                child: SimpleBentoCard(
-                  title: items[i + 1].title,
-                  description: items[i + 1].description,
-                  forcedHeight: 220,
-                ),
-              ),
-            ],
-          ),
-        );
-        gridRows.add(SizedBox(height: spacing));
-      } else {
-        // Trailing odd single element fills full width elegantly
-        gridRows.add(
-          SimpleBentoCard(
-            title: items[i].title,
-            description: items[i].description,
-            forcedHeight: 220,
-          ),
-        );
-        gridRows.add(SizedBox(height: spacing));
-      }
-    }
-
-    return Column(children: gridRows);
-  }
-
-  // ==========================================
-  // DYNAMIC MOBILE LAYOUT (Infinite Clean List)
-  // ==========================================
-  Widget _buildDynamicMobileLayout() {
-    // Standard map converts any list length straight down into vertical cells
-    return ListView.separated(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: items.length,
-      separatorBuilder: (context, index) => SizedBox(height: spacing),
-      itemBuilder: (context, index) {
-        return SimpleBentoCard(
-          title: items[index].title,
-          description: items[index].description,
-        );
-      },
-    );
-  }
+  // Simplified lerp helper to avoid importing dart:ui explicitly everywhere
+  double? lerpDouble(double a, double b, double t) => a + (b - a) * t;
 }
 
-class SimpleBentoCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final double? forcedHeight;
-
-  const SimpleBentoCard({
-    super.key,
-    required this.title,
-    required this.description,
-    this.forcedHeight,
-  });
+class GlassBlob extends StatelessWidget {
+  const GlassBlob({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Container(
-          width: double.infinity,
-          height: forcedHeight,
-          padding: const EdgeInsets.all(24.0),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF09090B) : Colors.white,
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(
-              color: isDark ? const Color(0xFF27272A) : const Color(0xFFE4E4E7),
-              width: 1.5,
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: isDark ? Colors.white : Colors.black,
-                ),
+            color: Colors.white.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.08),
+                offset: const Offset(0, 5),
+                blurRadius: 15,
               ),
-              const SizedBox(height: 10),
-              forcedHeight != null
-                  ? Expanded(
-                      child: Text(
-                        description,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: forcedHeight! > 200 ? 6 : 3,
-                        style: TextStyle(
-                          fontSize: 13,
-                          height: 1.4,
-                          color: isDark
-                              ? const Color(0xFFA1A1AA)
-                              : const Color(0xFF71717A),
-                        ),
-                      ),
-                    )
-                  : Text(
-                      description,
-                      style: TextStyle(
-                        fontSize: 13,
-                        height: 1.4,
-                        color: isDark
-                            ? const Color(0xFFA1A1AA)
-                            : const Color(0xFF71717A),
-                      ),
-                    ),
             ],
           ),
         ),
-        // const Positioned(top: -5, left: -5, child: SimplePlusMark()),
-        // const Positioned(top: -5, right: -5, child: SimplePlusMark()),
-        // const Positioned(bottom: -5, left: -5, child: SimplePlusMark()),
-        // const Positioned(bottom: -5, right: -5, child: SimplePlusMark()),
-      ],
-    );
-  }
-}
-
-class SimplePlusMark extends StatelessWidget {
-  const SimplePlusMark({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final color = isDark ? const Color(0xFF52525B) : const Color(0xFFA1A1AA);
-
-    return Text(
-      '+',
-      style: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w300,
-        color: color,
-        height: 1.0,
       ),
     );
   }

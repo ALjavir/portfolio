@@ -38,124 +38,108 @@ class _HomepageHeaderState extends State<HomepageHeader> {
       spacing: 10,
 
       children: [
-        SmoothrevealwidgetAnimation(
-          delay: Duration(seconds: 1),
-
-          child: TechbordercontainerAnimation(
-            child:
-                // LayeredWidgetKineticText(
-                //   lines: [
-                //     SuperkinetictextAnimation(
-                //       child: Row(
-                //         children: [
-                //           Text("HI!", style: baseStyle),
-                //           lottieImage(IconStyle.smile(), 46),
-                //         ],
-                //       ),
-                //     ),
-                //     SuperkinetictextAnimation(
-                //       child: Text("I AM", style: baseStyle),
-                //     ),
-                //     SuperkinetictextAnimation(
-                //       child: Text("AL JAVIR,", style: brandAccentStyle),
-                //     ),
-                //     SuperkinetictextAnimation(child: Text("A", style: baseStyle)),
-                //     SuperkinetictextAnimation(
-                //       child: Row(
-                //         children: [
-                //           SvgPicture.asset(
-                //             IconStyle.flutter(),
-                //             width: 38,
-                //             height: 38,
-                //           ),
-                //           Text("FLUTTER", style: brandAccentStyle),
-                //         ],
-                //       ),
-                //     ),
-                //     SuperkinetictextAnimation(
-                //       child: Text("DEVELOPER_.", style: baseStyle),
-                //     ),
-                //   ],
-                // ),
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: Fontstyle.sPrimaryFont(
-                      48,
-                      Theme.of(context).colorScheme.onSurface,
-                      FontWeight.bold,
-                    ),
-                    children: [
-                      //TextSpan(text: "''"),
-                      TextSpan(text: "HI!"),
-                      WidgetSpan(
-                        alignment: PlaceholderAlignment.middle,
-                        child: lottieImage(IconStyle.smile(), 46),
-                      ),
-                      TextSpan(text: "  I AM "),
-                      WidgetSpan(
-                        alignment: PlaceholderAlignment.baseline,
-                        baseline: TextBaseline.alphabetic,
-                        child: ScrambletextAnimation(
-                          text: "AL JAVIR,",
-                          style: Fontstyle.sPrimaryFont(
-                            48,
-
-                            ColorStyle.red,
-                            FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      TextSpan(text: "\nA "),
-                      WidgetSpan(
-                        alignment: PlaceholderAlignment.baseline,
-                        baseline: TextBaseline.alphabetic,
-                        child: SvgPicture.asset(
-                          IconStyle.flutter(),
-                          width: 38,
-                          height: 38,
-                        ),
-                      ),
-                      WidgetSpan(
-                        alignment: PlaceholderAlignment.baseline,
-                        baseline: TextBaseline.alphabetic,
-                        child: ScrambletextAnimation(
-                          text: " FLUTTER",
-                          style: Fontstyle.sPrimaryFont(
-                            48,
-                            ColorStyle.red,
-                            FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      TextSpan(text: " DEVELOPER_"),
-                      TextSpan(
-                        text: ".",
-                        style: Fontstyle.primaryFont(
-                          36,
-                          Colors.red,
-                          FontWeight.bold,
-                        ),
-                      ),
-                    ],
+        TechbordercontainerAnimation(
+          child:
+              // LayeredWidgetKineticText(
+              //   lines: [
+              //     SuperkinetictextAnimation(
+              //       child: Row(
+              //         children: [
+              //           Text("HI!", style: baseStyle),
+              //           lottieImage(IconStyle.smile(), 46),
+              //         ],
+              //       ),
+              //     ),
+              //     SuperkinetictextAnimation(
+              //       child: Text("I AM", style: baseStyle),
+              //     ),
+              //     SuperkinetictextAnimation(
+              //       child: Text("AL JAVIR,", style: brandAccentStyle),
+              //     ),
+              //     SuperkinetictextAnimation(child: Text("A", style: baseStyle)),
+              //     SuperkinetictextAnimation(
+              //       child: Row(
+              //         children: [
+              //           SvgPicture.asset(
+              //             IconStyle.flutter(),
+              //             width: 38,
+              //             height: 38,
+              //           ),
+              //           Text("FLUTTER", style: brandAccentStyle),
+              //         ],
+              //       ),
+              //     ),
+              //     SuperkinetictextAnimation(
+              //       child: Text("DEVELOPER_.", style: baseStyle),
+              //     ),
+              //   ],
+              // ),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: Fontstyle.sPrimaryFont(
+                    48,
+                    Theme.of(context).colorScheme.onSurface,
+                    FontWeight.bold,
                   ),
+                  children: [
+                    //TextSpan(text: "''"),
+                    TextSpan(text: "HI!"),
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: lottieImage(IconStyle.smile(), 46),
+                    ),
+
+                    TextSpan(text: "  I AM "),
+
+                    TextSpan(
+                      text: "AL JAVIR",
+                      style: Fontstyle.sPrimaryFont(
+                        48,
+
+                        ColorStyle.red,
+                        FontWeight.bold,
+                      ),
+                    ),
+
+                    TextSpan(text: "\nA "),
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.baseline,
+                      baseline: TextBaseline.alphabetic,
+                      child: SvgPicture.asset(
+                        IconStyle.flutter(),
+                        width: 38,
+                        height: 38,
+                      ),
+                    ),
+                    TextSpan(
+                      text: " FLUTTER",
+                      style: Fontstyle.sPrimaryFont(
+                        48,
+
+                        ColorStyle.red,
+                        FontWeight.bold,
+                      ),
+                    ),
+
+                    TextSpan(text: " DEVELOPER_"),
+                    TextSpan(
+                      text: ".",
+                      style: Fontstyle.primaryFont(
+                        36,
+                        Colors.red,
+                        FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-          ),
+              ),
         ),
 
-        SmoothrevealwidgetAnimation(
-          delay: Duration(seconds: 2),
-          child: ShiningtextAnimation(
-            text:
-                "crafting sleek, scalable, and meaningful digital experiences.",
+        ShiningtextAnimation(
+          text: "Crafting sleek, scalable, and meaningful digital experiences.",
 
-            style: Fontstyle.subFont(
-              18,
-              Theme.of(context).colorScheme.onSurface,
-
-              FontWeight.w500,
-            ),
-          ),
+          style: Fontstyle.subFont(18, Colors.white, FontWeight.normal),
         ),
       ],
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/animation/ani2.dart';
 import 'package:portfolio/animation/smoothRevealWidget_animation.dart';
-import 'package:portfolio/animation/sparkBackground_animation.dart';
 import 'package:portfolio/features/home/page/widget/homePage_header.dart';
 import 'package:portfolio/features/home/page/widget/homePage_skill.dart';
 
@@ -31,10 +30,7 @@ class _HomePageMainState extends State<HomePageMain> {
                 child: HomepageHeader(),
               ),
               HomepageSkill(),
-              SmoothrevealwidgetAnimation(
-                delay: Duration(seconds: 5),
-                child: scrollD(),
-              ),
+              scrollD(),
             ],
           ),
         ),

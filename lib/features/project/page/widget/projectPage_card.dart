@@ -75,173 +75,165 @@ class _MyCardState extends State<MyCard> {
       MediaQuery.of(context).size.width < 768;
   @override
   Widget build(BuildContext context) {
-    return SmoothrevealwidgetAnimation(
-      animationDuration: Duration(seconds: 2),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(20),
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
 
-        onTap: () {
-          Get.to(
-            () => ProjectpageinfoMain(projectRowModel: widget.projectRowModel),
-          );
-        },
-        onHover: (value) {
-          isHover.value = value;
-        },
+      onTap: () {
+        Get.to(
+          () => ProjectpageinfoMain(projectRowModel: widget.projectRowModel),
+        );
+      },
+      onHover: (value) {
+        isHover.value = value;
+      },
 
-        child: Card(
-          surfaceTintColor: Theme.of(context).brightness == Brightness.dark
-              ? Colors.black
-              : Colors.white,
+      child: Card(
+        surfaceTintColor: Theme.of(context).brightness == Brightness.dark
+            ? Colors.black
+            : Colors.white,
 
-          shadowColor: Theme.of(context).brightness == Brightness.dark
-              ? Colors.black
-              : Colors.white,
+        shadowColor: Theme.of(context).brightness == Brightness.dark
+            ? Colors.black
+            : Colors.white,
 
-          elevation: 10,
+        elevation: 10,
 
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
 
-          clipBehavior: Clip.antiAlias,
+        clipBehavior: Clip.antiAlias,
 
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
 
-            children: [
-              // IMAGE
-              ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(20),
-                ),
-
-                child: isMobile(context)
-                    ? CachedNetworkImage(
-                        imageUrl: widget.projectRowModel.thumbImage,
-                        placeholder: (_, _) => Padding(
-                          padding: const EdgeInsets.all(80),
-                          child: Center(
-                            child: Icon(Icons.image_search_rounded, size: 80),
-                          ),
-                        ),
-
-                        errorWidget: (_, _, _) => Padding(
-                          padding: EdgeInsets.all(80),
-                          child: Center(
-                            child: Icon(
-                              Icons.broken_image_rounded,
-                              color: Colors.red,
-                              size: 80,
-                            ),
-                          ),
-                        ),
-
-                        fit: BoxFit.cover,
-                      )
-                    : Obx(
-                        () => AnimatedScale(
-                          scale: isMobile(context)
-                              ? 1
-                              : isHover.value
-                              ? 1.08
-                              : 1,
-
-                          duration: const Duration(milliseconds: 400),
-
-                          curve: Curves.easeOut,
-
-                          child: CachedNetworkImage(
-                            imageUrl: widget.projectRowModel.thumbImage,
-                            placeholder: (_, _) => Padding(
-                              padding: const EdgeInsets.all(80),
-                              child: Center(
-                                child: Icon(
-                                  Icons.image_search_rounded,
-                                  size: 80,
-                                ),
-                              ),
-                            ),
-
-                            errorWidget: (_, _, _) => Padding(
-                              padding: EdgeInsets.all(80),
-                              child: Center(
-                                child: Icon(
-                                  Icons.broken_image_rounded,
-                                  color: Colors.red,
-                                  size: 80,
-                                ),
-                              ),
-                            ),
-
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
+          children: [
+            // IMAGE
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(20),
               ),
 
-              Padding(
-                padding: const EdgeInsets.all(15),
+              child: isMobile(context)
+                  ? CachedNetworkImage(
+                      imageUrl: widget.projectRowModel.thumbImage,
+                      placeholder: (_, _) => Padding(
+                        padding: const EdgeInsets.all(80),
+                        child: Center(
+                          child: Icon(Icons.image_search_rounded, size: 80),
+                        ),
+                      ),
 
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                      errorWidget: (_, _, _) => Padding(
+                        padding: EdgeInsets.all(80),
+                        child: Center(
+                          child: Icon(
+                            Icons.broken_image_rounded,
+                            color: Colors.red,
+                            size: 80,
+                          ),
+                        ),
+                      ),
 
-                  children: [
-                    // TITLE
-                    Text(
-                      widget.projectRowModel.name,
+                      fit: BoxFit.cover,
+                    )
+                  : Obx(
+                      () => AnimatedScale(
+                        scale: isMobile(context)
+                            ? 1
+                            : isHover.value
+                            ? 1.08
+                            : 1,
 
-                      style: Fontstyle.primaryFont(
-                        28,
+                        duration: const Duration(milliseconds: 400),
 
-                        Theme.of(context).colorScheme.onSurface,
+                        curve: Curves.easeOut,
 
-                        FontWeight.bold,
+                        child: CachedNetworkImage(
+                          imageUrl: widget.projectRowModel.thumbImage,
+                          placeholder: (_, _) => Padding(
+                            padding: const EdgeInsets.all(80),
+                            child: Center(
+                              child: Icon(Icons.image_search_rounded, size: 80),
+                            ),
+                          ),
+
+                          errorWidget: (_, _, _) => Padding(
+                            padding: EdgeInsets.all(80),
+                            child: Center(
+                              child: Icon(
+                                Icons.broken_image_rounded,
+                                color: Colors.red,
+                                size: 80,
+                              ),
+                            ),
+                          ),
+
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
+            ),
 
-                    const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.all(15),
 
-                    // SUBTITLE
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "// ",
-                            style: Fontstyle.subFont(
-                              16,
-                              ColorStyle.red,
-                              FontWeight.w900,
-                            ),
-                          ),
-                          TextSpan(
-                            text: widget.projectRowModel.subName,
-                            style: Fontstyle.subFont(
-                              16,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
 
-                              Theme.of(
-                                context,
-                              ).colorScheme.onSurface.withAlpha(180),
+                children: [
+                  // TITLE
+                  Text(
+                    widget.projectRowModel.name,
 
-                              FontWeight.normal,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ".",
-                            style: Fontstyle.subFont(
-                              16,
-                              ColorStyle.red,
-                              FontWeight.w900,
-                            ),
-                          ),
-                        ],
-                      ),
+                    style: Fontstyle.primaryFont(
+                      28,
+
+                      Theme.of(context).colorScheme.onSurface,
+
+                      FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  // SUBTITLE
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "// ",
+                          style: Fontstyle.subFont(
+                            16,
+                            ColorStyle.red,
+                            FontWeight.w900,
+                          ),
+                        ),
+                        TextSpan(
+                          text: widget.projectRowModel.subName,
+                          style: Fontstyle.subFont(
+                            16,
+
+                            Theme.of(
+                              context,
+                            ).colorScheme.onSurface.withAlpha(180),
+
+                            FontWeight.normal,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ".",
+                          style: Fontstyle.subFont(
+                            16,
+                            ColorStyle.red,
+                            FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

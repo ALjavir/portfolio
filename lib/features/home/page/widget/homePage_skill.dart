@@ -57,10 +57,7 @@ class _HomepageSkillState extends State<HomepageSkill> {
             final skills = snapshot.data!;
 
             // SUCCESS
-            return SmoothrevealwidgetAnimation(
-              delay: Duration(seconds: 3),
-              child: LogoCloudSlider(logos: skills),
-            );
+            return LogoCloudSlider(logos: skills);
           },
         ),
       ],
@@ -299,45 +296,41 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
                     },
                   ),
                 ),
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "</ ",
 
-                SmoothrevealwidgetAnimation(
-                  delay: Duration(seconds: 4),
-                  child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "</ ",
-
-                          style: Fontstyle.subFont(
-                            20,
-                            isMobile(context) ? Colors.red : powerdByColor,
-                            FontWeight.w900,
-                          ),
+                        style: Fontstyle.subFont(
+                          20,
+                          isMobile(context) ? Colors.red : powerdByColor,
+                          FontWeight.w900,
                         ),
+                      ),
 
-                        TextSpan(
-                          text: "POWERED BY",
+                      TextSpan(
+                        text: "POWERED BY",
 
-                          style: Fontstyle.sPrimaryFont(
-                            20,
+                        style: Fontstyle.sPrimaryFont(
+                          20,
 
-                            Theme.of(context).colorScheme.onSurface,
+                          Theme.of(context).colorScheme.onSurface,
 
-                            FontWeight.w500,
-                          ),
+                          FontWeight.w500,
                         ),
+                      ),
 
-                        TextSpan(
-                          text: " >",
+                      TextSpan(
+                        text: " >",
 
-                          style: Fontstyle.subFont(
-                            20,
-                            isMobile(context) ? Colors.red : powerdByColor,
-                            FontWeight.w900,
-                          ),
+                        style: Fontstyle.subFont(
+                          20,
+                          isMobile(context) ? Colors.red : powerdByColor,
+                          FontWeight.w900,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],

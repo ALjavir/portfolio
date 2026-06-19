@@ -84,11 +84,7 @@ class _mainPageState extends State<mainPage> {
               height: MediaQuery.of(context).size.height,
               child: const HomePageMain(),
             ),
-            Container(
-              key: skillKey,
-              height: MediaQuery.of(context).size.height * 2,
-              child: const SkillpageMain(),
-            ),
+            Container(key: skillKey, child: const SkillpageMain()),
 
             Container(key: projectKey, child: const ProjectMain()),
 
