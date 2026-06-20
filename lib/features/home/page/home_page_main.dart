@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/animation/ani2.dart';
-import 'package:portfolio/animation/smoothRevealWidget_animation.dart';
+import 'package:portfolio/features/home/page/widget/homeHero_animation.dart';
 import 'package:portfolio/features/home/page/widget/homePage_header.dart';
 import 'package:portfolio/features/home/page/widget/homePage_skill.dart';
 
@@ -19,7 +18,7 @@ class _HomePageMainState extends State<HomePageMain> {
     return Scaffold(
       backgroundColor: Colors.black,
       // appBar: TopBar(),
-      body: DiagonalWaveBackground(
+      body: HomeheroAnimation(
         child: Center(
           child: Column(
             spacing: 100,

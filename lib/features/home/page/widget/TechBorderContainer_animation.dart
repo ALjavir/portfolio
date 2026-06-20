@@ -12,21 +12,19 @@ class TechbordercontainerAnimation extends StatelessWidget {
   const TechbordercontainerAnimation({
     super.key,
     required this.child,
-    this.dotSize = 1.0, // Tiny micro-dots matching your image
-    this.dotGap = 16.0, // Spread out gap distance
-    this.dotColor = const Color(0xFFE53935), // Red dots matching image_90f6e3
-    this.borderColor = Colors.white24, // Thin subtle border
-    this.cornerBoxColor = const Color(0xFFE53935), // Red corner anchor squares
-    this.cornerBoxSize = 15.0, // Size of the corner anchor boxes
+    this.dotSize = 1.0,
+    this.dotGap = 16.0,
+    this.dotColor = const Color(0xFFE53935),
+    this.borderColor = Colors.white24,
+    this.cornerBoxColor = const Color(0xFFE53935),
+    this.cornerBoxSize = 15.0,
   });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-      clipBehavior: Clip
-          .none, // Allows corner anchors to sit perfectly on the outer edges
+      clipBehavior: Clip.none,
       children: [
-        // 1. The Background Dot Canvas (Clipped to stay inside the border)
         Positioned.fill(
           child: ClipRRect(
             child: IgnorePointer(
@@ -105,7 +103,6 @@ class _MicroDotPainter extends CustomPainter {
       ..color = color
       ..style = PaintingStyle.fill;
 
-    // Grid painting loops restricted safely inside container size bounds
     for (double x = dotGap / 2; x < size.width; x += dotGap) {
       for (double y = dotGap / 2; y < size.height; y += dotGap) {
         canvas.drawCircle(Offset(x, y), dotSize / 2, paint);

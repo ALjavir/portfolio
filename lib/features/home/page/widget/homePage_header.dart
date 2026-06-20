@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:portfolio/animation/TechBorderContainer_animation.dart';
+import 'package:portfolio/features/home/page/widget/TechBorderContainer_animation.dart';
 
-import 'package:portfolio/animation/scrambleText_animation.dart';
 import 'package:portfolio/animation/shiningText_animation.dart';
-import 'package:portfolio/animation/smoothRevealWidget_animation.dart';
 
 import 'package:portfolio/style/color_style.dart';
 import 'package:portfolio/style/font_style.dart';

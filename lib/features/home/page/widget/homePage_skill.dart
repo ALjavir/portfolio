@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/animation/smoothRevealWidget_animation.dart';
+
 import 'package:portfolio/features/home/controller/homePage_controller.dart';
 import 'package:portfolio/features/home/model/home_model.dart';
 import 'package:portfolio/style/color_style.dart';

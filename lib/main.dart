@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:portfolio/animation/sparkBackground_animation.dart';
+
 import 'package:portfolio/features/contract/page/contractPage_main.dart';
 import 'package:portfolio/features/home/controller/homePage_controller.dart';
 import 'package:portfolio/features/home/page/home_page_main.dart';
@@ -84,10 +86,26 @@ class _mainPageState extends State<mainPage> {
               height: MediaQuery.of(context).size.height,
               child: const HomePageMain(),
             ),
-            Container(key: skillKey, child: const SkillpageMain()),
+            //   WobblylineAnimation(),
+            Stack(
+              children: [
+                const Positioned.fill(
+                  child: SparkbackgroundAnimation(
+                    amount: 500,
+                    speed: 0.01,
+                    randColor: false,
+                  ),
+                ),
+                Column(
+                  children: [
+                    Container(key: skillKey, child: const SkillpageMain()),
+                    Container(key: projectKey, child: const ProjectMain()),
+                  ],
+                ),
+              ],
+            ),
 
-            Container(key: projectKey, child: const ProjectMain()),
-
+            //   WobblylineAnimation(),
             SizedBox(
               key: contactKey,
               height: MediaQuery.of(context).size.height,

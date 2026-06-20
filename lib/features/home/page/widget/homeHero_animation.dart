@@ -2,16 +2,16 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-class DiagonalWaveBackground extends StatefulWidget {
+class HomeheroAnimation extends StatefulWidget {
   final Widget? child;
 
-  const DiagonalWaveBackground({Key? key, this.child}) : super(key: key);
+  const HomeheroAnimation({Key? key, this.child}) : super(key: key);
 
   @override
-  State<DiagonalWaveBackground> createState() => _DiagonalWaveBackgroundState();
+  State<HomeheroAnimation> createState() => _DiagonalWaveBackgroundState();
 }
 
-class _DiagonalWaveBackgroundState extends State<DiagonalWaveBackground>
+class _DiagonalWaveBackgroundState extends State<HomeheroAnimation>
     with SingleTickerProviderStateMixin {
   ui.FragmentProgram? _program;
   late Ticker _ticker;

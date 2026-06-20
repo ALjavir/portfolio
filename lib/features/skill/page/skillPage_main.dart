@@ -15,13 +15,13 @@ class _SkillpageMainState extends State<SkillpageMain> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const Positioned.fill(
-          child: SparkbackgroundAnimation(
-            amount: 500,
-            speed: 0.01,
-            randColor: false,
-          ),
-        ),
+        // const Positioned.fill(
+        //   child: SparkbackgroundAnimation(
+        //     amount: 500,
+        //     speed: 0.01,
+        //     randColor: false,
+        //   ),
+        // ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 100),
           child: Column(

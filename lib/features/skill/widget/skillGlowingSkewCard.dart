@@ -6,7 +6,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:portfolio/style/font_style.dart';
 
-class GlowingSkewCard extends StatefulWidget {
+class Skillglowingskewcard extends StatefulWidget {
   final String title;
   final String description;
   final List tech;
@@ -15,7 +15,7 @@ class GlowingSkewCard extends StatefulWidget {
   final Color gradienMiddle;
   final Color gradientTo;
 
-  const GlowingSkewCard({
+  const Skillglowingskewcard({
     super.key,
     required this.title,
     required this.description,
@@ -27,10 +27,10 @@ class GlowingSkewCard extends StatefulWidget {
   });
 
   @override
-  State<GlowingSkewCard> createState() => _GlowingSkewCardState();
+  State<Skillglowingskewcard> createState() => _GlowingSkewCardState();
 }
 
-class _GlowingSkewCardState extends State<GlowingSkewCard>
+class _GlowingSkewCardState extends State<Skillglowingskewcard>
     with TickerProviderStateMixin {
   late AnimationController _hoverController;
   late AnimationController _floatController;
@@ -315,29 +315,7 @@ class _GlowingSkewCardState extends State<GlowingSkewCard>
                                     ),
                                   ),
                                 ),
-                                AnimatedContainer(
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.easeInOut,
-                                  height: _isHovered
-                                      ? 0
-                                      : 22, // Instantly collapses layout bounds to let full text occupy space on hover
-                                  child: AnimatedOpacity(
-                                    duration: const Duration(milliseconds: 200),
-                                    // Adds a slight micro-delay alignment when fading back in
-                                    opacity: _isHovered ? 0.0 : 1.0,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 2.0),
-                                      child: Text(
-                                        "See more →",
-                                        style: Fontstyle.subFont(
-                                          14,
-                                          Colors.white,
-                                          FontWeight.normal,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+
                                 //const SizedBox(height: 8),
                               ],
                             ),
@@ -353,18 +331,42 @@ class _GlowingSkewCardState extends State<GlowingSkewCard>
                                     style: Fontstyle.subFont(
                                       20,
                                       Colors.white,
-                                      FontWeight.normal,
+                                      FontWeight.w700,
                                     ),
                                   ),
                                   Text(
                                     " / 10",
                                     style: Fontstyle.subFont(
-                                      20,
+                                      18,
                                       Colors.white30,
                                       FontWeight.normal,
                                     ),
                                   ),
                                 ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Align(
+                              alignment: AlignmentGeometry.bottomLeft,
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                                // FIX 1: Increased default height to 30 so a 14pt text fits perfectly
+                                height: _isHovered ? 0 : 30,
+                                child: AnimatedOpacity(
+                                  duration: const Duration(milliseconds: 200),
+                                  opacity: _isHovered ? 0.0 : 1.0,
+                                  child: Text(
+                                    "See More →",
+                                    style: Fontstyle.subFont(
+                                      18,
+                                      Colors.white,
+                                      FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
