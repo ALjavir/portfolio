@@ -19,18 +19,13 @@ class _HomePageMainState extends State<HomePageMain> {
       backgroundColor: Colors.black,
       // appBar: TopBar(),
       body: HomeheroAnimation(
-        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             spacing: 100,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: HomepageHeader(),
-              ),
-              HomepageSkill(),
-              scrollD(),
-            ],
+            children: [HomepageHeader(), HomepageSkill(), scrollD()],
           ),
         ),
       ),

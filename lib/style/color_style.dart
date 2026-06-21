@@ -39,18 +39,6 @@ class ColorStyle {
 
   static final gradientColorproduct = [
     [
-      Color(0xFFADA996),
-      Color(0xFFF2F2F2),
-      Color(0xFFDBDBDB),
-      Color(0xFFEAEAEA),
-
-      Color(0xFFEAEAEA),
-      Color(0xFFDBDBDB),
-      Color(0xFFF2F2F2),
-      Color(0xFFADA996),
-    ],
-
-    [
       Color(0xFF03001E),
       Color(0xFF7303C0),
       Color(0xFFEC38BC),

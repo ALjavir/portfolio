@@ -36,102 +36,61 @@ class _HomepageHeaderState extends State<HomepageHeader> {
       spacing: 10,
 
       children: [
-        TechbordercontainerAnimation(
-          child:
-              // LayeredWidgetKineticText(
-              //   lines: [
-              //     SuperkinetictextAnimation(
-              //       child: Row(
-              //         children: [
-              //           Text("HI!", style: baseStyle),
-              //           lottieImage(IconStyle.smile(), 46),
-              //         ],
-              //       ),
-              //     ),
-              //     SuperkinetictextAnimation(
-              //       child: Text("I AM", style: baseStyle),
-              //     ),
-              //     SuperkinetictextAnimation(
-              //       child: Text("AL JAVIR,", style: brandAccentStyle),
-              //     ),
-              //     SuperkinetictextAnimation(child: Text("A", style: baseStyle)),
-              //     SuperkinetictextAnimation(
-              //       child: Row(
-              //         children: [
-              //           SvgPicture.asset(
-              //             IconStyle.flutter(),
-              //             width: 38,
-              //             height: 38,
-              //           ),
-              //           Text("FLUTTER", style: brandAccentStyle),
-              //         ],
-              //       ),
-              //     ),
-              //     SuperkinetictextAnimation(
-              //       child: Text("DEVELOPER_.", style: baseStyle),
-              //     ),
-              //   ],
-              // ),
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  style: Fontstyle.sPrimaryFont(
-                    48,
-                    Theme.of(context).colorScheme.onSurface,
-                    FontWeight.bold,
-                  ),
-                  children: [
-                    //TextSpan(text: "''"),
-                    TextSpan(text: "HI!"),
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: lottieImage(IconStyle.smile(), 46),
-                    ),
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            style: Fontstyle.sPrimaryFont(
+              48,
+              Theme.of(context).colorScheme.onSurface,
+              FontWeight.bold,
+            ),
+            children: [
+              //TextSpan(text: "''"),
+              TextSpan(text: "HI!"),
+              WidgetSpan(
+                alignment: PlaceholderAlignment.middle,
+                child: lottieImage(IconStyle.smile(), 46),
+              ),
 
-                    TextSpan(text: "  I AM "),
+              TextSpan(text: "  I AM "),
 
-                    TextSpan(
-                      text: "AL JAVIR",
-                      style: Fontstyle.sPrimaryFont(
-                        48,
+              TextSpan(
+                text: "AL JAVIR,",
+                style: Fontstyle.sPrimaryFont(
+                  48,
 
-                        ColorStyle.red,
-                        FontWeight.bold,
-                      ),
-                    ),
-
-                    TextSpan(text: "\nA "),
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.baseline,
-                      baseline: TextBaseline.alphabetic,
-                      child: SvgPicture.asset(
-                        IconStyle.flutter(),
-                        width: 38,
-                        height: 38,
-                      ),
-                    ),
-                    TextSpan(
-                      text: " FLUTTER",
-                      style: Fontstyle.sPrimaryFont(
-                        48,
-
-                        ColorStyle.red,
-                        FontWeight.bold,
-                      ),
-                    ),
-
-                    TextSpan(text: " DEVELOPER_"),
-                    TextSpan(
-                      text: ".",
-                      style: Fontstyle.primaryFont(
-                        36,
-                        Colors.red,
-                        FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                  ColorStyle.red,
+                  FontWeight.bold,
                 ),
               ),
+
+              TextSpan(text: "\nA "),
+              WidgetSpan(
+                alignment: PlaceholderAlignment.baseline,
+                baseline: TextBaseline.alphabetic,
+                child: SvgPicture.asset(
+                  IconStyle.flutter(),
+                  width: 38,
+                  height: 38,
+                ),
+              ),
+              TextSpan(
+                text: " FLUTTER",
+                style: Fontstyle.sPrimaryFont(
+                  48,
+
+                  ColorStyle.red,
+                  FontWeight.bold,
+                ),
+              ),
+
+              TextSpan(text: " DEVELOPER_"),
+              TextSpan(
+                text: ".",
+                style: Fontstyle.primaryFont(36, Colors.red, FontWeight.bold),
+              ),
+            ],
+          ),
         ),
 
         ShiningtextAnimation(

@@ -80,6 +80,7 @@ class _mainPageState extends State<mainPage> {
         //  padding: EdgeInsets.symmetric(horizontal: 20),
         controller: scrollController,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
               key: homeKey,
@@ -96,11 +97,17 @@ class _mainPageState extends State<mainPage> {
                     randColor: false,
                   ),
                 ),
-                Column(
-                  children: [
-                    Container(key: skillKey, child: const SkillpageMain()),
-                    Container(key: projectKey, child: const ProjectMain()),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    spacing: 50,
+                    children: [
+                      Divider(height: 10, color: Colors.transparent),
+                      Container(key: skillKey, child: const SkillpageMain()),
+                      Divider(height: 100, color: Colors.transparent),
+                      Container(key: projectKey, child: const ProjectMain()),
+                    ],
+                  ),
                 ),
               ],
             ),

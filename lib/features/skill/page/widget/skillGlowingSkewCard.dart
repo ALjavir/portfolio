@@ -72,7 +72,10 @@ class _GlowingSkewCardState extends State<Skillglowingskewcard>
 
   @override
   Widget build(BuildContext context) {
-    const double cardWidth = 400.0;
+    bool isMobile(BuildContext context) =>
+        MediaQuery.of(context).size.width < 440;
+
+    final double cardWidth = isMobile(context) ? 350 : 400.0;
     const double cardHeight = 300.0;
     const double skewAngleAtRest = 18.0 * math.pi / 180.0;
 

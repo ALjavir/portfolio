@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:portfolio/animation/shiningText_animation.dart';
 
 import 'package:portfolio/features/project/controller/projectPage_controller.dart';
 import 'package:portfolio/features/project/page/widget/projectPage_card.dart';
@@ -21,52 +22,41 @@ class _ProjectMainState extends State<ProjectMain> {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 60,
         children: [
-          // RichText(
-          //   text: TextSpan(
-          //     children: [
-          //       WidgetSpan(
-          //         child: ScrambletextAnimation(
-          //           text: "// ",
-
-          //           style: Fontstyle.subFont(
-          //             36,
-          //             ColorStyle.red,
-          //             FontWeight.w900,
-          //           ),
-          //         ),
-          //       ),
-
-          //       WidgetSpan(
-          //         child: ScrambletextAnimation(
-          //           text: "PROJECT",
-
-          //           style: Fontstyle.primaryFont(
-          //             36,
-
-          //             Theme.of(context).colorScheme.onSurface,
-
-          //             FontWeight.w500,
-          //           ),
-          //         ),
-          //       ),
-
-          //       WidgetSpan(
-          //         child: ScrambletextAnimation(
-          //           text: ".",
-
-          //           style: Fontstyle.subFont(
-          //             36,
-          //             ColorStyle.red,
-          //             FontWeight.w900,
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          Column(
+            spacing: 10,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: Fontstyle.sPrimaryFont(
+                    48,
+                    Theme.of(context).colorScheme.onSurface,
+                    FontWeight.bold,
+                  ),
+                  children: [
+                    TextSpan(text: "MY CREATIVE "),
+                    TextSpan(
+                      text: "WORK",
+                      style: Fontstyle.sPrimaryFont(
+                        48,
+                        Colors.red,
+                        FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ShiningtextAnimation(
+                style: Fontstyle.subFont(18, Colors.white, FontWeight.normal),
+                text:
+                    "Projects that demonstrate my problem-solving approach, technical skills, and passion for building meaningful software",
+              ),
+            ],
+          ),
           FutureBuilder(
             future: projectpageController.fecthProjectData(),
             builder: (context, snapshot) {

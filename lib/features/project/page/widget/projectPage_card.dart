@@ -1,16 +1,12 @@
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/features/skill/widget/skillGlowingSkewCard.dart';
+
 import 'package:portfolio/features/project/page/widget/productHomeglowCard_animation.dart';
 
 import 'package:portfolio/features/project/model/project_model.dart';
 import 'package:portfolio/features/project/page/widget/projectPageInfo_main.dart';
 import 'package:portfolio/style/color_style.dart';
-import 'package:portfolio/style/font_style.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class ProductHomeGlowCardAnimation extends StatefulWidget {
   final List<ProjectRowModel> projectModel;
@@ -22,46 +18,44 @@ class ProductHomeGlowCardAnimation extends StatefulWidget {
 }
 
 class _ProjectpageCardState extends State<ProductHomeGlowCardAnimation> {
-  bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 768;
-
   @override
   Widget build(BuildContext context) {
-    return isMobile(context)
-        ? mobileProject(widget.projectModel)
-        : desktopProject(widget.projectModel);
+    return desktopProject(widget.projectModel);
   }
 
   Widget desktopProject(List<ProjectRowModel> projects) {
-    return MasonryGridView.count(
-      crossAxisCount: 3,
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final bool isMobile = screenWidth < 768;
 
-      shrinkWrap: true,
+    const double baseCardHeight = 620.0;
 
-      physics: const NeverScrollableScrollPhysics(),
+    const double desktopCardWidth = 400.0;
 
-      mainAxisSpacing: 30,
-      crossAxisSpacing: 30,
+    return SizedBox(
+      height: isMobile ? null : baseCardHeight,
 
-      itemCount: projects.length,
+      child: ListView.separated(
+        scrollDirection: isMobile ? Axis.vertical : Axis.horizontal,
 
-      itemBuilder: (context, index) =>
-          MyCard(projectRowModel: projects[index], index: index),
-    );
-  }
+        physics: isMobile
+            ? const NeverScrollableScrollPhysics()
+            : const BouncingScrollPhysics(),
 
-  Widget mobileProject(List<ProjectRowModel> projects) {
-    return ListView.separated(
-      shrinkWrap: true,
+        shrinkWrap: isMobile,
 
-      physics: const NeverScrollableScrollPhysics(),
+        itemCount: projects.length,
 
-      itemCount: projects.length,
+        separatorBuilder: (context, index) =>
+            SizedBox(width: isMobile ? 0 : 40.0, height: isMobile ? 40.0 : 0),
 
-      separatorBuilder: (_, _) => const SizedBox(height: 30),
-
-      itemBuilder: (context, index) =>
-          MyCard(projectRowModel: projects[index], index: index),
+        itemBuilder: (context, index) {
+          return Container(
+            height: isMobile ? 600 : null,
+            width: isMobile ? double.infinity : desktopCardWidth,
+            child: MyCard(projectRowModel: projects[index], index: index),
+          );
+        },
+      ),
     );
   }
 }
@@ -96,18 +90,45 @@ class _MyCardState extends State<MyCard> {
 
       child: AnimatedGradientCard(
         glowColor: ColorStyle.gradientColorproduct[widget.index],
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(18),
 
-          children: [
-            // IMAGE
-            ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(18),
-              ),
+          child: isMobile(context)
+              ? CachedNetworkImage(
+                  imageUrl: widget.projectRowModel.thumbImage,
+                  placeholder: (_, _) => Padding(
+                    padding: const EdgeInsets.all(80),
+                    child: Center(
+                      child: Icon(Icons.image_search_rounded, size: 80),
+                    ),
+                  ),
 
-              child: isMobile(context)
-                  ? CachedNetworkImage(
+                  errorWidget: (_, _, _) => Padding(
+                    padding: EdgeInsets.all(80),
+                    child: Center(
+                      child: Icon(
+                        Icons.broken_image_rounded,
+                        color: Colors.red,
+                        size: 80,
+                      ),
+                    ),
+                  ),
+
+                  fit: BoxFit.fitHeight,
+                )
+              : Obx(
+                  () => AnimatedScale(
+                    scale: isMobile(context)
+                        ? 1
+                        : isHover.value
+                        ? 1.08
+                        : 1,
+
+                    duration: const Duration(milliseconds: 400),
+
+                    curve: Curves.easeOut,
+
+                    child: CachedNetworkImage(
                       imageUrl: widget.projectRowModel.thumbImage,
                       placeholder: (_, _) => Padding(
                         padding: const EdgeInsets.all(80),
@@ -128,106 +149,9 @@ class _MyCardState extends State<MyCard> {
                       ),
 
                       fit: BoxFit.cover,
-                    )
-                  : Obx(
-                      () => AnimatedScale(
-                        scale: isMobile(context)
-                            ? 1
-                            : isHover.value
-                            ? 1.08
-                            : 1,
-
-                        duration: const Duration(milliseconds: 400),
-
-                        curve: Curves.easeOut,
-
-                        child: CachedNetworkImage(
-                          imageUrl: widget.projectRowModel.thumbImage,
-                          placeholder: (_, _) => Padding(
-                            padding: const EdgeInsets.all(80),
-                            child: Center(
-                              child: Icon(Icons.image_search_rounded, size: 80),
-                            ),
-                          ),
-
-                          errorWidget: (_, _, _) => Padding(
-                            padding: EdgeInsets.all(80),
-                            child: Center(
-                              child: Icon(
-                                Icons.broken_image_rounded,
-                                color: Colors.red,
-                                size: 80,
-                              ),
-                            ),
-                          ),
-
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(15),
-
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-
-                children: [
-                  // TITLE
-                  Text(
-                    widget.projectRowModel.name,
-
-                    style: Fontstyle.primaryFont(
-                      28,
-
-                      Theme.of(context).colorScheme.onSurface,
-
-                      FontWeight.bold,
                     ),
                   ),
-
-                  const SizedBox(height: 8),
-
-                  // SUBTITLE
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "// ",
-                          style: Fontstyle.subFont(
-                            16,
-                            ColorStyle.red,
-                            FontWeight.w900,
-                          ),
-                        ),
-                        TextSpan(
-                          text: widget.projectRowModel.subName,
-                          style: Fontstyle.subFont(
-                            16,
-
-                            Theme.of(
-                              context,
-                            ).colorScheme.onSurface.withAlpha(180),
-
-                            FontWeight.normal,
-                          ),
-                        ),
-                        TextSpan(
-                          text: ".",
-                          style: Fontstyle.subFont(
-                            16,
-                            ColorStyle.red,
-                            FontWeight.w900,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+                ),
         ),
       ),
     );
