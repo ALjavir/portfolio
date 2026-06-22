@@ -50,6 +50,7 @@ class _ProjectpageinfoDetailState extends State<ProjectpageinfoImage> {
                         Theme.of(context).colorScheme.onSurface.withAlpha(150),
 
                         FontWeight.normal,
+                        context,
                       ),
                     ),
                   ),
@@ -83,6 +84,7 @@ class _ProjectpageinfoDetailState extends State<ProjectpageinfoImage> {
                         18,
                         Theme.of(context).colorScheme.onSurface.withAlpha(150),
                         FontWeight.normal,
+                        context,
                       ),
                     ),
                   ),
@@ -223,12 +225,13 @@ class _ProjectpageinfoDetailState extends State<ProjectpageinfoImage> {
               26,
               Theme.of(context).colorScheme.onSurface,
               FontWeight.normal,
+              context,
             ),
           ),
 
           TextSpan(
             text: " // ",
-            style: Fontstyle.subFont(26, ColorStyle.red, FontWeight.w900),
+            style: Fontstyle.subFont(26, Colors.red, FontWeight.w900, context),
           ),
           TextSpan(
             text: name,
@@ -238,11 +241,12 @@ class _ProjectpageinfoDetailState extends State<ProjectpageinfoImage> {
               Theme.of(context).colorScheme.onSurface,
 
               FontWeight.normal,
+              context,
             ),
           ),
           TextSpan(
             text: ".",
-            style: Fontstyle.subFont(26, ColorStyle.red, FontWeight.w900),
+            style: Fontstyle.subFont(26, Colors.red, FontWeight.w900, context),
           ),
         ],
       ),

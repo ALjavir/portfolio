@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Fontstyle {
-  static TextStyle topBarFont(double fontSize) {
+  static bool isMobile(BuildContext context) =>
+      MediaQuery.of(context).size.width < 768;
+
+  static TextStyle topBarFont(BuildContext context, double fontSize) {
     return TextStyle(
       fontFamily: 'HousttelySignature',
-      fontSize: fontSize,
+      fontSize: isMobile(context) ? fontSize - 10 : fontSize,
       fontWeight: FontWeight.bold,
     );
   }
@@ -13,10 +16,11 @@ class Fontstyle {
     double fontSize,
     Color color,
     FontWeight fontWeight,
+    BuildContext context,
   ) {
     return TextStyle(
       fontFamily: 'Gangors',
-      fontSize: fontSize,
+      fontSize: isMobile(context) ? fontSize - 10 : fontSize,
       fontWeight: fontWeight,
       color: color,
     );
@@ -25,11 +29,13 @@ class Fontstyle {
   static TextStyle sPrimaryFont(
     double fontSize,
     Color color,
+
     FontWeight fontWeight,
+    BuildContext context,
   ) {
     return TextStyle(
       fontFamily: 'BodoniModa',
-      fontSize: fontSize,
+      fontSize: isMobile(context) ? fontSize - 10 : fontSize,
       fontWeight: fontWeight,
       color: color,
     );
@@ -39,10 +45,11 @@ class Fontstyle {
     double fontSize,
     Color color,
     FontWeight fontWeight,
+    BuildContext context,
   ) {
     return TextStyle(
       fontFamily: 'PlayfairDisplay',
-      fontSize: fontSize,
+      fontSize: isMobile(context) ? fontSize - 10 : fontSize,
       fontWeight: fontWeight,
       color: color,
     );
@@ -52,10 +59,11 @@ class Fontstyle {
     double fontSize,
     Color color,
     FontWeight fontWeight,
+    BuildContext context,
   ) {
     return TextStyle(
       fontFamily: 'Lato',
-      fontSize: fontSize,
+      fontSize: isMobile(context) ? fontSize - 10 : fontSize,
       fontWeight: fontWeight,
       color: color,
     );

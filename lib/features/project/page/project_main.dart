@@ -35,6 +35,7 @@ class _ProjectMainState extends State<ProjectMain> {
                     48,
                     Theme.of(context).colorScheme.onSurface,
                     FontWeight.bold,
+                    context,
                   ),
                   children: [
                     TextSpan(text: "MY CREATIVE "),
@@ -44,13 +45,19 @@ class _ProjectMainState extends State<ProjectMain> {
                         48,
                         Colors.red,
                         FontWeight.bold,
+                        context,
                       ),
                     ),
                   ],
                 ),
               ),
               ShiningtextAnimation(
-                style: Fontstyle.subFont(18, Colors.white, FontWeight.normal),
+                style: Fontstyle.subFont(
+                  18,
+                  Colors.white,
+                  FontWeight.normal,
+                  context,
+                ),
                 text:
                     "Projects that demonstrate my problem-solving approach, technical skills, and passion for building meaningful software",
               ),

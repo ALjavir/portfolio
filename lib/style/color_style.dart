@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ColorStyle {
-  static const Color white = Color(0xFFEFE6DD);
-  static const Color red = Colors.red;
-  static const Color black = Color(0xFF181312);
-
   static final gradientColorSkill = [
     // 1. Red → Orange → Yellow
     [Color(0xFFFF005C), Color(0xFFFF4D4D), Color(0xFFFFBC00)],

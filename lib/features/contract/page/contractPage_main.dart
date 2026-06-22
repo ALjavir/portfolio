@@ -14,7 +14,7 @@ class _ContractpageMainState extends State<ContractpageMain> {
     return Scaffold(
       body: Text(
         "data",
-        style: Fontstyle.primaryFont(48, Colors.red, FontWeight.bold),
+        style: Fontstyle.primaryFont(48, Colors.red, FontWeight.bold, context),
       ),
     );
   }

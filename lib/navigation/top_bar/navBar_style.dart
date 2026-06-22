@@ -27,7 +27,7 @@ class _NavbarStyleState extends State<NavbarStyle> {
   @override
   Widget build(BuildContext context) {
     final activeColor = Theme.of(context).colorScheme.onSurface;
-    final hoverColor = ColorStyle.red;
+    final hoverColor = Colors.red;
 
     return InkWell(
       splashColor: Colors.transparent,
@@ -62,6 +62,7 @@ class _NavbarStyleState extends State<NavbarStyle> {
             18,
             isHovering.value ? hoverColor : activeColor.withAlpha(150),
             FontWeight.bold,
+            context,
           ),
         ),
         Text(
@@ -70,6 +71,7 @@ class _NavbarStyleState extends State<NavbarStyle> {
             22,
             isHovering.value ? hoverColor : activeColor,
             FontWeight.bold,
+            context,
           ),
         ),
       ],
@@ -86,6 +88,7 @@ class _NavbarStyleState extends State<NavbarStyle> {
             22,
             isActive.value ? hoverColor : activeColor,
             FontWeight.bold,
+            context,
           ),
         ),
         Text(
@@ -94,6 +97,7 @@ class _NavbarStyleState extends State<NavbarStyle> {
             22,
             isActive.value ? hoverColor : activeColor,
             FontWeight.bold,
+            context,
           ),
         ),
       ],

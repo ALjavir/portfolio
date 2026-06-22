@@ -13,12 +13,11 @@ import 'package:portfolio/features/project/page/project_main.dart';
 import 'package:portfolio/features/skill/page/skillPage_main.dart';
 import 'package:portfolio/firebase_options.dart';
 import 'package:portfolio/navigation/top_bar/navBar_route.dart';
-import 'package:portfolio/theme/theme_mode_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  Get.put(ThemeModeController(), permanent: true);
+
   Get.put(HomepageController(), permanent: true);
 
   ProjectpageController projectpageController = ProjectpageController();
@@ -29,8 +28,6 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  final ThemeModeController themeModeController =
-      Get.find<ThemeModeController>();
 
   @override
   Widget build(BuildContext context) {

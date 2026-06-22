@@ -18,18 +18,29 @@ class SkillpageHeader extends StatelessWidget {
               48,
               Theme.of(context).colorScheme.onSurface,
               FontWeight.bold,
+              context,
             ),
             children: [
               TextSpan(text: "MY TECHNICAL "),
               TextSpan(
                 text: "EXPERTISE",
-                style: Fontstyle.sPrimaryFont(48, Colors.red, FontWeight.bold),
+                style: Fontstyle.sPrimaryFont(
+                  48,
+                  Colors.red,
+                  FontWeight.bold,
+                  context,
+                ),
               ),
             ],
           ),
         ),
         ShiningtextAnimation(
-          style: Fontstyle.subFont(18, Colors.white, FontWeight.normal),
+          style: Fontstyle.subFont(
+            18,
+            Colors.white,
+            FontWeight.normal,
+            context,
+          ),
           text:
               "Technologies and engineering practices I've mastered through building real-world applications",
         ),

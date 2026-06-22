@@ -20,6 +20,7 @@ class _HomepageHeaderState extends State<HomepageHeader> {
     MediaQuery.of(context).size.width < 768 ? 48 : 48,
     Colors.white,
     FontWeight.bold,
+    context,
 
     //letterSpacing: -2.0,
   );
@@ -42,6 +43,7 @@ class _HomepageHeaderState extends State<HomepageHeader> {
               48,
               Theme.of(context).colorScheme.onSurface,
               FontWeight.bold,
+              context,
             ),
             children: [
               //TextSpan(text: "''"),
@@ -57,9 +59,9 @@ class _HomepageHeaderState extends State<HomepageHeader> {
                 text: "AL JAVIR,",
                 style: Fontstyle.sPrimaryFont(
                   48,
-
-                  ColorStyle.red,
+                  Colors.red,
                   FontWeight.bold,
+                  context,
                 ),
               ),
 
@@ -77,16 +79,21 @@ class _HomepageHeaderState extends State<HomepageHeader> {
                 text: " FLUTTER",
                 style: Fontstyle.sPrimaryFont(
                   48,
-
-                  ColorStyle.red,
+                  Colors.red,
                   FontWeight.bold,
+                  context,
                 ),
               ),
 
               TextSpan(text: " DEVELOPER_"),
               TextSpan(
                 text: ".",
-                style: Fontstyle.primaryFont(36, Colors.red, FontWeight.bold),
+                style: Fontstyle.primaryFont(
+                  36,
+                  Colors.red,
+                  FontWeight.bold,
+                  context,
+                ),
               ),
             ],
           ),
@@ -95,7 +102,12 @@ class _HomepageHeaderState extends State<HomepageHeader> {
         ShiningtextAnimation(
           text: "Crafting sleek, scalable, and meaningful digital experiences.",
 
-          style: Fontstyle.subFont(18, Colors.white, FontWeight.normal),
+          style: Fontstyle.subFont(
+            18,
+            Colors.white,
+            FontWeight.normal,
+            context,
+          ),
         ),
       ],
     );

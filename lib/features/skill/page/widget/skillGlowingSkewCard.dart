@@ -276,6 +276,7 @@ class _GlowingSkewCardState extends State<Skillglowingskewcard>
                                     28,
                                     Colors.white,
                                     FontWeight.normal,
+                                    context,
                                   ),
                                 ),
                                 Wrap(
@@ -310,6 +311,7 @@ class _GlowingSkewCardState extends State<Skillglowingskewcard>
                                       18,
                                       Colors.white70,
                                       FontWeight.normal,
+                                      context,
                                     ),
                                     child: Text(
                                       widget.description,
@@ -335,6 +337,7 @@ class _GlowingSkewCardState extends State<Skillglowingskewcard>
                                       20,
                                       Colors.white,
                                       FontWeight.w700,
+                                      context,
                                     ),
                                   ),
                                   Text(
@@ -343,6 +346,7 @@ class _GlowingSkewCardState extends State<Skillglowingskewcard>
                                       18,
                                       Colors.white30,
                                       FontWeight.normal,
+                                      context,
                                     ),
                                   ),
                                 ],
@@ -367,6 +371,7 @@ class _GlowingSkewCardState extends State<Skillglowingskewcard>
                                       18,
                                       Colors.white,
                                       FontWeight.bold,
+                                      context,
                                     ),
                                   ),
                                 ),

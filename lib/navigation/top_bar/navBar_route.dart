@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:portfolio/navigation/top_bar/navBar_style.dart';
 import 'package:portfolio/style/font_style.dart';
 import 'package:portfolio/style/icon_style.dart';
-import 'package:portfolio/theme/theme_mode_controller.dart';
 
 class NavbarRoute extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback globalKeyHome;
@@ -26,7 +25,6 @@ class NavbarRoute extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _NavbarRouteState extends State<NavbarRoute> {
-  final ThemeModeController themeController = Get.find<ThemeModeController>();
   bool isMobile(BuildContext context) =>
       MediaQuery.of(context).size.width < 768;
   RxBool isMenuOpen = false.obs;
@@ -48,7 +46,10 @@ class _NavbarRouteState extends State<NavbarRoute> {
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(20, 0, 0, 5),
-              child: Text('Al  Javir ._', style: Fontstyle.topBarFont(28)),
+              child: Text(
+                'Al  Javir ._',
+                style: Fontstyle.topBarFont(context, 28),
+              ),
             ),
 
             if (!isMobile(context))
@@ -85,7 +86,6 @@ class _NavbarRouteState extends State<NavbarRoute> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                themeButton(),
                 if (isMobile(context))
                   Padding(
                     padding: const EdgeInsets.only(right: 15),
@@ -96,39 +96,6 @@ class _NavbarRouteState extends State<NavbarRoute> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget themeButton() {
-    return IconButton(
-      splashColor: Colors.transparent,
-      focusColor: Colors.transparent,
-      hoverColor: Colors.transparent,
-
-      highlightColor: Colors.transparent,
-      icon: Obx(() {
-        return MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: AnimatedRotation(
-            turns: themeController.isDarkMode.value ? 0.0 : 0.5,
-            duration: Duration(milliseconds: 300),
-            child: SvgPicture.asset(
-              themeController.isDarkMode.value
-                  ? IconStyle.darkMode()
-                  : IconStyle.lightMode(),
-              width: 34,
-              height: 34,
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).iconTheme.color!,
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
-        );
-      }),
-      onPressed: () {
-        Get.find<ThemeModeController>().toggleTheme();
-      },
     );
   }
 
