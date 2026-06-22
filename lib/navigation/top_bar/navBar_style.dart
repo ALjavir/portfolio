@@ -23,8 +23,6 @@ class NavbarStyle extends StatefulWidget {
 class _NavbarStyleState extends State<NavbarStyle> {
   RxBool isHovering = false.obs;
   RxBool isActive = false.obs;
-  static bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 768;
 
   @override
   Widget build(BuildContext context) {

@@ -75,6 +75,8 @@ class _mainPageState extends State<mainPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile(BuildContext context) =>
+        MediaQuery.of(context).size.width < 768;
     return Scaffold(
       appBar: NavbarRoute(
         globalKeyHome: () => scrollTo(homeKey),
@@ -89,7 +91,9 @@ class _mainPageState extends State<mainPage> {
           children: [
             SizedBox(
               key: homeKey,
-              height: MediaQuery.of(context).size.height,
+              height: isMobile(context)
+                  ? MediaQuery.of(context).size.height + 50
+                  : MediaQuery.of(context).size.height,
               child: const HomePageMain(),
             ),
             //   WobblylineAnimation(),
