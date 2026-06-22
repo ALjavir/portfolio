@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/animation/shiningText_animation.dart';
-import 'package:portfolio/features/home/page/widget/TechBorderContainer_animation.dart';
 import 'package:portfolio/style/font_style.dart';
 
 class SkillpageHeader extends StatelessWidget {

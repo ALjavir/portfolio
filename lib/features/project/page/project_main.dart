@@ -4,7 +4,6 @@ import 'package:portfolio/animation/shiningText_animation.dart';
 
 import 'package:portfolio/features/project/controller/projectPage_controller.dart';
 import 'package:portfolio/features/project/page/widget/projectPage_card.dart';
-import 'package:portfolio/style/color_style.dart';
 import 'package:portfolio/style/font_style.dart';
 import 'package:portfolio/style/icon_style.dart';
 

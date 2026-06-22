@@ -12,10 +12,9 @@ class SkillpageMain extends StatefulWidget {
 class _SkillpageMainState extends State<SkillpageMain> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      spacing: 50,
-      children: [SkillpageHeader(), SkillpageCard()],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(children: [SkillpageHeader(), SkillpageCard()]),
     );
   }
 }

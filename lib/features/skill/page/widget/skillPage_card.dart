@@ -30,50 +30,35 @@ class _SkillpageCardState extends State<SkillpageCard> {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
 
-    int crossAxisCount = 1;
-    if (screenWidth >= 1080) {
-      crossAxisCount = 4;
-    } else if (screenWidth >= 880) {
-      crossAxisCount = 2;
-    }
+    // Define the breakpoint for desktop vs mobile
+    final bool isDesktop = screenWidth >= 880;
 
-    const double horizontalPadding = 40.0;
-    const double crossAxisSpacing = 40.0;
-    final double usableWidth =
-        screenWidth -
-        horizontalPadding -
-        (crossAxisSpacing * (crossAxisCount - 1));
-    final double cellWidth = usableWidth / crossAxisCount;
-    const double baseCardHeight = 300.0;
-
-    final double maxExpandedCellHeight = baseCardHeight + 150;
-    final double dynamicAspectRatio = cellWidth / maxExpandedCellHeight;
+    //const double maxExpandedCellHeight = baseCardHeight + 150;
 
     return Obx(() {
-      if (homepageController.isLoading.value)
-        return SizedBox(
+      if (homepageController.isLoading.value) {
+        return const SizedBox(
           height: 300,
           child: Center(child: CircularProgressIndicator()),
         );
-      else
-        return
-        // This remains non-positioned so the Stack knows exactly how tall it needs to grow.
-        Center(
-          child: GridView.builder(
-            padding: EdgeInsets.symmetric(vertical: 20),
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: skillpageController.skillPageList.length,
+      }
 
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              crossAxisSpacing: crossAxisSpacing,
-              mainAxisSpacing: crossAxisCount * 80,
-              childAspectRatio: dynamicAspectRatio,
-            ),
+      final data = skillpageController.skillPageList;
+      final gradientColor = ColorStyle.gradientColorSkill;
+
+      if (isDesktop) {
+        return SizedBox(
+          height: 720,
+
+          child: ListView.separated(
+            clipBehavior: Clip.none,
+
+            padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 0),
+
+            scrollDirection: Axis.horizontal,
+            itemCount: data.length,
+            separatorBuilder: (context, index) => const SizedBox(width: 60),
             itemBuilder: (context, index) {
-              final data = skillpageController.skillPageList;
-              final gradientColor = ColorStyle.gradientColorSkill;
               return Center(
                 child: Skillglowingskewcard(
                   description: data[index].text,
@@ -88,6 +73,29 @@ class _SkillpageCardState extends State<SkillpageCard> {
             },
           ),
         );
+      } else {
+        // Mobile: Vertical ListView
+        return ListView.separated(
+          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 150),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: data.length,
+          separatorBuilder: (context, index) => const SizedBox(height: 240),
+          itemBuilder: (context, index) {
+            return Center(
+              child: Skillglowingskewcard(
+                description: data[index].text,
+                title: data[index].name,
+                tech: data[index].tech,
+                score: data[index].score,
+                gradientFrom: gradientColor[index][0],
+                gradienMiddle: gradientColor[index][1],
+                gradientTo: gradientColor[index][2],
+              ),
+            );
+          },
+        );
+      }
     });
   }
 }

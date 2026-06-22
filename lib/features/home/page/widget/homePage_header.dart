@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:portfolio/features/home/page/widget/TechBorderContainer_animation.dart';
 
 import 'package:portfolio/animation/shiningText_animation.dart';
 

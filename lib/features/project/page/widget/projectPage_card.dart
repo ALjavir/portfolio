@@ -24,34 +24,29 @@ class _ProjectpageCardState extends State<ProductHomeGlowCardAnimation> {
   }
 
   Widget desktopProject(List<ProjectRowModel> projects) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final bool isMobile = screenWidth < 768;
+    // final double screenWidth = MediaQuery.of(context).size.width;
+    // final bool isMobile = screenWidth < 768;
 
     const double baseCardHeight = 620.0;
 
     const double desktopCardWidth = 400.0;
 
     return SizedBox(
-      height: isMobile ? null : baseCardHeight,
-
+      height: 600,
       child: ListView.separated(
-        scrollDirection: isMobile ? Axis.vertical : Axis.horizontal,
+        scrollDirection: Axis.horizontal,
 
-        physics: isMobile
-            ? const NeverScrollableScrollPhysics()
-            : const BouncingScrollPhysics(),
+        physics: BouncingScrollPhysics(),
 
-        shrinkWrap: isMobile,
+        shrinkWrap: true,
 
         itemCount: projects.length,
 
-        separatorBuilder: (context, index) =>
-            SizedBox(width: isMobile ? 0 : 40.0, height: isMobile ? 40.0 : 0),
+        separatorBuilder: (context, index) => SizedBox(width: 40.0, height: 0),
 
         itemBuilder: (context, index) {
           return Container(
-            height: isMobile ? 600 : null,
-            width: isMobile ? double.infinity : desktopCardWidth,
+            width: 300,
             child: MyCard(projectRowModel: projects[index], index: index),
           );
         },

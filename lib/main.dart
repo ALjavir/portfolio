@@ -97,17 +97,14 @@ class _mainPageState extends State<mainPage> {
                     randColor: false,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    spacing: 50,
-                    children: [
-                      Divider(height: 10, color: Colors.transparent),
-                      Container(key: skillKey, child: const SkillpageMain()),
-                      Divider(height: 100, color: Colors.transparent),
-                      Container(key: projectKey, child: const ProjectMain()),
-                    ],
-                  ),
+                Column(
+                  spacing: 50,
+                  children: [
+                    Divider(height: 10, color: Colors.transparent),
+                    Container(key: skillKey, child: const SkillpageMain()),
+                    Divider(height: 100, color: Colors.transparent),
+                    Container(key: projectKey, child: const ProjectMain()),
+                  ],
                 ),
               ],
             ),

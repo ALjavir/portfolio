@@ -70,11 +70,7 @@ class _AnimatedGradientCardState extends State<AnimatedGradientCard>
             child: child,
           );
         },
-        child: Container(
-          height: 800,
-          padding: const EdgeInsets.all(15),
-          child: widget.child,
-        ),
+        child: Padding(padding: const EdgeInsets.all(15), child: widget.child),
       ),
     );
   }
