@@ -287,7 +287,6 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
                                   Colors.white60,
 
                                   FontWeight.normal,
-                                  context,
                                 ),
                               ),
                             ],
@@ -307,7 +306,6 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
                           20,
                           isMobile(context) ? Colors.red : powerdByColor,
                           FontWeight.w900,
-                          context,
                         ),
                       ),
 
@@ -320,7 +318,6 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
                           Theme.of(context).colorScheme.onSurface,
 
                           FontWeight.w500,
-                          context,
                         ),
                       ),
 
@@ -331,7 +328,6 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
                           20,
                           isMobile(context) ? Colors.red : powerdByColor,
                           FontWeight.w900,
-                          context,
                         ),
                       ),
                     ],

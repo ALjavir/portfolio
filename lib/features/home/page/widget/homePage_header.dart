@@ -16,19 +16,8 @@ class HomepageHeader extends StatefulWidget {
 }
 
 class _HomepageHeaderState extends State<HomepageHeader> {
-  late final TextStyle baseStyle = Fontstyle.sPrimaryFont(
-    MediaQuery.of(context).size.width < 768 ? 48 : 48,
-    Colors.white,
-    FontWeight.bold,
-    context,
-
-    //letterSpacing: -2.0,
-  );
-
-  late final TextStyle brandAccentStyle = baseStyle.copyWith(
-    fontWeight: FontWeight.w900,
-    color: const Color(0xFFE53935), // Signature red accent color
-  );
+  static bool isMobile(BuildContext context) =>
+      MediaQuery.of(context).size.width < 768;
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +29,19 @@ class _HomepageHeaderState extends State<HomepageHeader> {
           textAlign: TextAlign.center,
           text: TextSpan(
             style: Fontstyle.sPrimaryFont(
-              48,
+              isMobile(context) ? 36 : 48,
               Theme.of(context).colorScheme.onSurface,
               FontWeight.bold,
-              context,
             ),
             children: [
               //TextSpan(text: "''"),
               TextSpan(text: "HI!"),
               WidgetSpan(
                 alignment: PlaceholderAlignment.middle,
-                child: lottieImage(IconStyle.smile(), 46),
+                child: lottieImage(
+                  IconStyle.smile(),
+                  isMobile(context) ? 36 : 46,
+                ),
               ),
 
               TextSpan(text: "  I AM "),
@@ -58,10 +49,9 @@ class _HomepageHeaderState extends State<HomepageHeader> {
               TextSpan(
                 text: "AL JAVIR,",
                 style: Fontstyle.sPrimaryFont(
-                  48,
+                  isMobile(context) ? 36 : 48,
                   Colors.red,
                   FontWeight.bold,
-                  context,
                 ),
               ),
 
@@ -71,29 +61,23 @@ class _HomepageHeaderState extends State<HomepageHeader> {
                 baseline: TextBaseline.alphabetic,
                 child: SvgPicture.asset(
                   IconStyle.flutter(),
-                  width: 38,
-                  height: 38,
+                  width: isMobile(context) ? 28 : 38,
+                  height: isMobile(context) ? 28 : 38,
                 ),
               ),
               TextSpan(
                 text: " FLUTTER",
                 style: Fontstyle.sPrimaryFont(
-                  48,
+                  isMobile(context) ? 36 : 48,
                   Colors.red,
                   FontWeight.bold,
-                  context,
                 ),
               ),
 
               TextSpan(text: " DEVELOPER_"),
               TextSpan(
                 text: ".",
-                style: Fontstyle.primaryFont(
-                  36,
-                  Colors.red,
-                  FontWeight.bold,
-                  context,
-                ),
+                style: Fontstyle.primaryFont(36, Colors.red, FontWeight.bold),
               ),
             ],
           ),
@@ -103,10 +87,9 @@ class _HomepageHeaderState extends State<HomepageHeader> {
           text: "Crafting sleek, scalable, and meaningful digital experiences.",
 
           style: Fontstyle.subFont(
-            18,
+            isMobile(context) ? 16 : 18,
             Colors.white,
             FontWeight.normal,
-            context,
           ),
         ),
       ],

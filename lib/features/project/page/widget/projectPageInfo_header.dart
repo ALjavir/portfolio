@@ -32,7 +32,6 @@ class _ProjectpageinfoHeaderState extends State<ProjectpageinfoHeader> {
               Theme.of(context).colorScheme.onSurface,
 
               FontWeight.bold,
-              context,
             ),
           ),
         ),
@@ -43,12 +42,7 @@ class _ProjectpageinfoHeaderState extends State<ProjectpageinfoHeader> {
               children: [
                 TextSpan(
                   text: "// ",
-                  style: Fontstyle.subFont(
-                    18,
-                    Colors.red,
-                    FontWeight.w900,
-                    context,
-                  ),
+                  style: Fontstyle.subFont(18, Colors.red, FontWeight.w900),
                 ),
                 TextSpan(
                   text: widget.projectRowModel.subName,
@@ -58,17 +52,11 @@ class _ProjectpageinfoHeaderState extends State<ProjectpageinfoHeader> {
                     Theme.of(context).colorScheme.onSurface.withAlpha(180),
 
                     FontWeight.normal,
-                    context,
                   ),
                 ),
                 TextSpan(
                   text: ".",
-                  style: Fontstyle.subFont(
-                    18,
-                    Colors.red,
-                    FontWeight.w900,
-                    context,
-                  ),
+                  style: Fontstyle.subFont(18, Colors.red, FontWeight.w900),
                 ),
               ],
             ),
@@ -86,7 +74,6 @@ class _ProjectpageinfoHeaderState extends State<ProjectpageinfoHeader> {
               Theme.of(context).colorScheme.onSurface.withAlpha(150),
 
               FontWeight.normal,
-              context,
             ),
           ),
         ),
@@ -137,7 +124,6 @@ class _ProjectpageinfoHeaderState extends State<ProjectpageinfoHeader> {
                                     context,
                                   ).colorScheme.onSurface.withAlpha(200),
                                   FontWeight.normal,
-                                  context,
                                 ),
                               ),
                             ],
@@ -160,7 +146,6 @@ class _ProjectpageinfoHeaderState extends State<ProjectpageinfoHeader> {
                           20,
                           Colors.red,
                           FontWeight.w900,
-                          context,
                         ),
                       ),
                       TextSpan(
@@ -169,7 +154,6 @@ class _ProjectpageinfoHeaderState extends State<ProjectpageinfoHeader> {
                           20,
                           Theme.of(context).colorScheme.onSurface,
                           FontWeight.w500,
-                          context,
                         ),
                       ),
                       TextSpan(
@@ -178,7 +162,6 @@ class _ProjectpageinfoHeaderState extends State<ProjectpageinfoHeader> {
                           20,
                           Colors.red,
                           FontWeight.w900,
-                          context,
                         ),
                       ),
                     ],

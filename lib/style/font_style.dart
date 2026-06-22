@@ -16,11 +16,10 @@ class Fontstyle {
     double fontSize,
     Color color,
     FontWeight fontWeight,
-    BuildContext context,
   ) {
     return TextStyle(
       fontFamily: 'Gangors',
-      fontSize: isMobile(context) ? fontSize - 10 : fontSize,
+      fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
     );
@@ -31,11 +30,10 @@ class Fontstyle {
     Color color,
 
     FontWeight fontWeight,
-    BuildContext context,
   ) {
     return TextStyle(
       fontFamily: 'BodoniModa',
-      fontSize: isMobile(context) ? fontSize - 10 : fontSize,
+      fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
     );
@@ -45,11 +43,10 @@ class Fontstyle {
     double fontSize,
     Color color,
     FontWeight fontWeight,
-    BuildContext context,
   ) {
     return TextStyle(
       fontFamily: 'PlayfairDisplay',
-      fontSize: isMobile(context) ? fontSize - 10 : fontSize,
+      fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
     );
@@ -59,11 +56,10 @@ class Fontstyle {
     double fontSize,
     Color color,
     FontWeight fontWeight,
-    BuildContext context,
   ) {
     return TextStyle(
       fontFamily: 'Lato',
-      fontSize: isMobile(context) ? fontSize - 10 : fontSize,
+      fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
     );

@@ -47,8 +47,11 @@ class _NavbarRouteState extends State<NavbarRoute> {
             Padding(
               padding: EdgeInsets.fromLTRB(20, 0, 0, 5),
               child: Text(
-                'Al  Javir texts this._',
-                style: Fontstyle.topBarFont(context, 28),
+                'Al  Javir_.',
+                style: Fontstyle.topBarFont(
+                  context,
+                  isMobile(context) ? 24 : 28,
+                ),
               ),
             ),
 
