@@ -3,7 +3,8 @@ import 'package:portfolio/animation/shiningText_animation.dart';
 import 'package:portfolio/style/font_style.dart';
 
 class SkillpageHeader extends StatelessWidget {
-  const SkillpageHeader({super.key});
+  final bool isMobile;
+  const SkillpageHeader({super.key, required this.isMobile});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class SkillpageHeader extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(
             style: Fontstyle.sPrimaryFont(
-              48,
+              isMobile ? 38 : 48,
               Theme.of(context).colorScheme.onSurface,
               FontWeight.bold,
             ),
@@ -23,7 +24,11 @@ class SkillpageHeader extends StatelessWidget {
               TextSpan(text: "MY TECHNICAL "),
               TextSpan(
                 text: "EXPERTISE",
-                style: Fontstyle.sPrimaryFont(48, Colors.red, FontWeight.bold),
+                style: Fontstyle.sPrimaryFont(
+                  isMobile ? 38 : 48,
+                  Colors.red,
+                  FontWeight.bold,
+                ),
               ),
             ],
           ),

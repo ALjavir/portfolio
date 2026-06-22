@@ -8,7 +8,12 @@ import 'package:portfolio/style/font_style.dart';
 
 class ProjectpageinfoMain extends StatefulWidget {
   final ProjectRowModel projectRowModel;
-  const ProjectpageinfoMain({super.key, required this.projectRowModel});
+  final bool isMobile;
+  const ProjectpageinfoMain({
+    super.key,
+    required this.projectRowModel,
+    required this.isMobile,
+  });
 
   @override
   State<ProjectpageinfoMain> createState() => _ProjectpageinfoMainState();
@@ -65,7 +70,10 @@ class _ProjectpageinfoMainState extends State<ProjectpageinfoMain> {
 
           children: [
             if (isMobile(context)) ...[
-              ProjectpageinfoHeader(projectRowModel: widget.projectRowModel),
+              ProjectpageinfoHeader(
+                projectRowModel: widget.projectRowModel,
+                isMobile: widget.isMobile,
+              ),
 
               ProjectpageinfoVideo(videoLink: widget.projectRowModel.video),
             ] else ...[
@@ -75,6 +83,7 @@ class _ProjectpageinfoMainState extends State<ProjectpageinfoMain> {
                   Expanded(
                     child: ProjectpageinfoHeader(
                       projectRowModel: widget.projectRowModel,
+                      isMobile: widget.isMobile,
                     ),
                   ),
 

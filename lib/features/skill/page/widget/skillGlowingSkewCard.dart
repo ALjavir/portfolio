@@ -14,6 +14,7 @@ class Skillglowingskewcard extends StatefulWidget {
   final Color gradientFrom;
   final Color gradienMiddle;
   final Color gradientTo;
+  final bool isMobile;
 
   const Skillglowingskewcard({
     super.key,
@@ -24,6 +25,7 @@ class Skillglowingskewcard extends StatefulWidget {
     required this.tech,
     required this.score,
     required this.gradienMiddle,
+    required this.isMobile,
   });
 
   @override
@@ -72,11 +74,8 @@ class _GlowingSkewCardState extends State<Skillglowingskewcard>
 
   @override
   Widget build(BuildContext context) {
-    bool isMobile(BuildContext context) =>
-        MediaQuery.of(context).size.width < 440;
-
-    final double cardWidth = isMobile(context) ? 350 : 400.0;
-    const double cardHeight = 300.0;
+    final double cardWidth = widget.isMobile ? 320 : 400.0;
+    const double cardHeight = 350.0;
     const double skewAngleAtRest = 18.0 * math.pi / 180.0;
 
     return InkWell(
@@ -98,7 +97,7 @@ class _GlowingSkewCardState extends State<Skillglowingskewcard>
           final double floatVal = _floatController.value;
 
           // Interpolations for Skewed Panels
-          final double panelLeft = lerpDouble(70.0, 46.0, hoverVal)!;
+          final double panelLeft = lerpDouble(78.0, 46.0, hoverVal)!;
           final double panelWidth = lerpDouble(
             cardWidth * 0.5,
             cardWidth - 90.0,

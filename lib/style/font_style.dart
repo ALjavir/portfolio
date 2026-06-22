@@ -4,10 +4,10 @@ class Fontstyle {
   static bool isMobile(BuildContext context) =>
       MediaQuery.of(context).size.width < 768;
 
-  static TextStyle topBarFont(BuildContext context, double fontSize) {
+  static TextStyle topBarFont(double fontSize) {
     return TextStyle(
       fontFamily: 'HousttelySignature',
-      fontSize: isMobile(context) ? fontSize - 10 : fontSize,
+      fontSize: fontSize,
       fontWeight: FontWeight.bold,
     );
   }

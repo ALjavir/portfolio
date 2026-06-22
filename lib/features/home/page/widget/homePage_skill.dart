@@ -12,7 +12,8 @@ import 'package:portfolio/style/icon_style.dart';
 import 'package:portfolio/theme/gWidget/global_widget.dart';
 
 class HomepageSkill extends StatefulWidget {
-  const HomepageSkill({super.key});
+  final bool isMobile;
+  const HomepageSkill({super.key, required this.isMobile});
 
   @override
   State<HomepageSkill> createState() => _HomepageSkillState();
@@ -57,7 +58,7 @@ class _HomepageSkillState extends State<HomepageSkill> {
             final skills = snapshot.data!;
 
             // SUCCESS
-            return LogoCloudSlider(logos: skills);
+            return LogoCloudSlider(logos: skills, isMobile: widget.isMobile);
           },
         ),
       ],
@@ -67,6 +68,7 @@ class _HomepageSkillState extends State<HomepageSkill> {
 
 class LogoCloudSlider extends StatefulWidget {
   final List<skillModelHome> logos;
+  final bool isMobile;
   // final double gap;
   // final double normalSpeed;
   // final double hoverSpeed;
@@ -74,6 +76,7 @@ class LogoCloudSlider extends StatefulWidget {
   const LogoCloudSlider({
     super.key,
     required this.logos,
+    required this.isMobile,
     // this.gap = 42.0,
     // this.normalSpeed = 1.0,
     // this.hoverSpeed = 0.3,
@@ -163,15 +166,12 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
     super.dispose();
   }
 
-  bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 768;
-
   Color powerdByColor = Colors.white;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment.center,
+      alignment: Alignment.topCenter,
       children: [
         // 1. The Scrolling Content wrapped in MouseRegion for hover detection
         MouseRegion(
@@ -213,7 +213,7 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
               children: [
                 Container(
                   margin: EdgeInsets.only(bottom: 20),
-                  height: 110,
+                  height: widget.isMobile ? 90 : 110,
                   //alignment: AlignmentGeometry.center,
                   constraints: const BoxConstraints(maxWidth: 1000),
                   // padding: const EdgeInsets.symmetric(vertical: 14),
@@ -256,14 +256,14 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
                               SvgPicture.network(
                                 skill.image,
 
-                                width: 45,
+                                width: widget.isMobile ? 40 : 45,
 
-                                height: 45,
+                                height: widget.isMobile ? 40 : 45,
 
                                 placeholderBuilder: (context) => SizedBox(
-                                  width: 50,
+                                  width: widget.isMobile ? 40 : 45,
 
-                                  height: 50,
+                                  height: widget.isMobile ? 40 : 45,
 
                                   child: CircularProgressIndicator(
                                     strokeWidth: 2,
@@ -304,7 +304,7 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
 
                         style: Fontstyle.subFont(
                           20,
-                          isMobile(context) ? Colors.red : powerdByColor,
+                          widget.isMobile ? Colors.red : powerdByColor,
                           FontWeight.w900,
                         ),
                       ),
@@ -326,7 +326,7 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
 
                         style: Fontstyle.subFont(
                           20,
-                          isMobile(context) ? Colors.red : powerdByColor,
+                          widget.isMobile ? Colors.red : powerdByColor,
                           FontWeight.w900,
                         ),
                       ),
@@ -341,7 +341,7 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
         // 3. Left Control Button
         Positioned(
           left: 0,
-          top: 30,
+          top: widget.isMobile ? 20 : 30,
           child: IconButton(
             icon: const Icon(
               Icons.chevron_left,
@@ -356,7 +356,7 @@ class _LogoCloudSliderState extends State<LogoCloudSlider> {
         // 4. Right Control Button
         Positioned(
           right: 0,
-          top: 30,
+          top: widget.isMobile ? 20 : 30,
           child: IconButton(
             icon: const Icon(
               Icons.chevron_right,

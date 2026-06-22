@@ -3,22 +3,19 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:portfolio/animation/shiningText_animation.dart';
 
-import 'package:portfolio/style/color_style.dart';
 import 'package:portfolio/style/font_style.dart';
 import 'package:portfolio/style/icon_style.dart';
 import 'package:portfolio/theme/gWidget/global_widget.dart';
 
 class HomepageHeader extends StatefulWidget {
-  const HomepageHeader({super.key});
+  final bool isMobile;
+  const HomepageHeader({super.key, required this.isMobile});
 
   @override
   State<HomepageHeader> createState() => _HomepageHeaderState();
 }
 
 class _HomepageHeaderState extends State<HomepageHeader> {
-  static bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 768;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +26,7 @@ class _HomepageHeaderState extends State<HomepageHeader> {
           textAlign: TextAlign.center,
           text: TextSpan(
             style: Fontstyle.sPrimaryFont(
-              isMobile(context) ? 36 : 48,
+              widget.isMobile ? 36 : 48,
               Theme.of(context).colorScheme.onSurface,
               FontWeight.bold,
             ),
@@ -40,7 +37,7 @@ class _HomepageHeaderState extends State<HomepageHeader> {
                 alignment: PlaceholderAlignment.middle,
                 child: lottieImage(
                   IconStyle.smile(),
-                  isMobile(context) ? 36 : 46,
+                  widget.isMobile ? 36 : 46,
                 ),
               ),
 
@@ -49,7 +46,7 @@ class _HomepageHeaderState extends State<HomepageHeader> {
               TextSpan(
                 text: "AL JAVIR,",
                 style: Fontstyle.sPrimaryFont(
-                  isMobile(context) ? 36 : 48,
+                  widget.isMobile ? 36 : 48,
                   Colors.red,
                   FontWeight.bold,
                 ),
@@ -61,14 +58,14 @@ class _HomepageHeaderState extends State<HomepageHeader> {
                 baseline: TextBaseline.alphabetic,
                 child: SvgPicture.asset(
                   IconStyle.flutter(),
-                  width: isMobile(context) ? 28 : 38,
-                  height: isMobile(context) ? 28 : 38,
+                  width: widget.isMobile ? 28 : 38,
+                  height: widget.isMobile ? 28 : 38,
                 ),
               ),
               TextSpan(
                 text: " FLUTTER",
                 style: Fontstyle.sPrimaryFont(
-                  isMobile(context) ? 36 : 48,
+                  widget.isMobile ? 36 : 48,
                   Colors.red,
                   FontWeight.bold,
                 ),
@@ -86,11 +83,7 @@ class _HomepageHeaderState extends State<HomepageHeader> {
         ShiningtextAnimation(
           text: "Crafting sleek, scalable, and meaningful digital experiences.",
 
-          style: Fontstyle.subFont(
-            isMobile(context) ? 16 : 18,
-            Colors.white,
-            FontWeight.normal,
-          ),
+          style: Fontstyle.subFont(18, Colors.white, FontWeight.normal),
         ),
       ],
     );

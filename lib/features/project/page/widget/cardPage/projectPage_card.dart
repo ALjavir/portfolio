@@ -2,16 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:portfolio/features/project/page/widget/productHomeglowCard_animation.dart';
+import 'package:portfolio/features/project/page/widget/cardPage/productHomeglowCard_animation.dart';
 
 import 'package:portfolio/features/project/model/project_model.dart';
 import 'package:portfolio/features/project/page/widget/projectPageInfo_main.dart';
 import 'package:portfolio/style/color_style.dart';
 
 class ProductHomeGlowCardAnimation extends StatefulWidget {
+  final bool isMobile;
   final List<ProjectRowModel> projectModel;
 
-  const ProductHomeGlowCardAnimation({super.key, required this.projectModel});
+  const ProductHomeGlowCardAnimation({
+    super.key,
+    required this.projectModel,
+    required this.isMobile,
+  });
 
   @override
   State<ProductHomeGlowCardAnimation> createState() => _ProjectpageCardState();
@@ -26,10 +31,6 @@ class _ProjectpageCardState extends State<ProductHomeGlowCardAnimation> {
   Widget desktopProject(List<ProjectRowModel> projects) {
     // final double screenWidth = MediaQuery.of(context).size.width;
     // final bool isMobile = screenWidth < 768;
-
-    const double baseCardHeight = 620.0;
-
-    const double desktopCardWidth = 400.0;
 
     return SizedBox(
       height: 600,
@@ -47,7 +48,11 @@ class _ProjectpageCardState extends State<ProductHomeGlowCardAnimation> {
         itemBuilder: (context, index) {
           return Container(
             width: 300,
-            child: MyCard(projectRowModel: projects[index], index: index),
+            child: MyCard(
+              projectRowModel: projects[index],
+              index: index,
+              isMobile: widget.isMobile,
+            ),
           );
         },
       ),
@@ -58,7 +63,13 @@ class _ProjectpageCardState extends State<ProductHomeGlowCardAnimation> {
 class MyCard extends StatefulWidget {
   final ProjectRowModel projectRowModel;
   final int index;
-  const MyCard({super.key, required this.projectRowModel, required this.index});
+  final bool isMobile;
+  const MyCard({
+    super.key,
+    required this.projectRowModel,
+    required this.index,
+    required this.isMobile,
+  });
 
   @override
   State<MyCard> createState() => _MyCardState();
@@ -76,7 +87,10 @@ class _MyCardState extends State<MyCard> {
 
       onTap: () {
         Get.to(
-          () => ProjectpageinfoMain(projectRowModel: widget.projectRowModel),
+          () => ProjectpageinfoMain(
+            projectRowModel: widget.projectRowModel,
+            isMobile: widget.isMobile,
+          ),
         );
       },
       onHover: (value) {

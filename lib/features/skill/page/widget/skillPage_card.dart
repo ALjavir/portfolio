@@ -8,7 +8,8 @@ import 'package:portfolio/features/skill/controller/skillPage_controller.dart';
 import 'package:portfolio/style/color_style.dart';
 
 class SkillpageCard extends StatefulWidget {
-  const SkillpageCard({super.key});
+  final bool isMobile;
+  const SkillpageCard({super.key, required this.isMobile});
 
   @override
   State<SkillpageCard> createState() => _SkillpageCardState();
@@ -68,6 +69,7 @@ class _SkillpageCardState extends State<SkillpageCard> {
                   gradientFrom: gradientColor[index][0],
                   gradienMiddle: gradientColor[index][1],
                   gradientTo: gradientColor[index][2],
+                  isMobile: widget.isMobile,
                 ),
               );
             },
@@ -76,7 +78,7 @@ class _SkillpageCardState extends State<SkillpageCard> {
       } else {
         // Mobile: Vertical ListView
         return ListView.separated(
-          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 150),
+          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 120),
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: data.length,
@@ -91,6 +93,7 @@ class _SkillpageCardState extends State<SkillpageCard> {
                 gradientFrom: gradientColor[index][0],
                 gradienMiddle: gradientColor[index][1],
                 gradientTo: gradientColor[index][2],
+                isMobile: widget.isMobile,
               ),
             );
           },

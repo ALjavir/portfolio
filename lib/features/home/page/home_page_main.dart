@@ -15,18 +15,20 @@ class HomePageMain extends StatefulWidget {
 class _HomePageMainState extends State<HomePageMain> {
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.width < 768;
     return Scaffold(
       backgroundColor: Colors.black,
       // appBar: TopBar(),
       body: HomeheroAnimation(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            spacing: 100,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [HomepageHeader(), HomepageSkill(), scrollD()],
-          ),
+        child: Column(
+          spacing: isMobile ? 80 : 100,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            HomepageHeader(isMobile: isMobile),
+            HomepageSkill(isMobile: isMobile),
+            scrollD(),
+          ],
         ),
       ),
     );

@@ -6,8 +6,13 @@ import 'package:portfolio/style/color_style.dart';
 import 'package:portfolio/style/font_style.dart';
 
 class ProjectpageinfoHeader extends StatefulWidget {
+  final bool isMobile;
   final ProjectRowModel projectRowModel;
-  const ProjectpageinfoHeader({super.key, required this.projectRowModel});
+  const ProjectpageinfoHeader({
+    super.key,
+    required this.projectRowModel,
+    required this.isMobile,
+  });
 
   @override
   State<ProjectpageinfoHeader> createState() => _ProjectpageinfoHeaderState();

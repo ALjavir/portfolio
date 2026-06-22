@@ -12,9 +12,20 @@ class SkillpageMain extends StatefulWidget {
 class _SkillpageMainState extends State<SkillpageMain> {
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.width < 768;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(children: [SkillpageHeader(), SkillpageCard()]),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 0 : 20),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: SkillpageHeader(isMobile: isMobile),
+          ),
+
+          SkillpageCard(isMobile: isMobile),
+        ],
+      ),
     );
   }
 }

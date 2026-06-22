@@ -91,9 +91,7 @@ class _mainPageState extends State<mainPage> {
           children: [
             SizedBox(
               key: homeKey,
-              height: isMobile(context)
-                  ? MediaQuery.of(context).size.height + 50
-                  : MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height,
               child: const HomePageMain(),
             ),
             //   WobblylineAnimation(),
