@@ -35,10 +35,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
         return MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaler:
-                TextScaler.noScaling, // Forces text to stay at 1.0x scale
-          ),
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.noScaling),
           child: child!,
         );
       },
