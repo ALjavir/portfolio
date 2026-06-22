@@ -30,9 +30,9 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
+
 /coverage/
-/Android/
+
 
 # Symbolication related
 app.*.symbols
@@ -44,3 +44,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Ignore absolutely everything inside the build folder
+/build/*
+
+# EXCEPT the web folder which Vercel needs
+!/build/web/
