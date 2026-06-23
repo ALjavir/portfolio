@@ -88,11 +88,13 @@ class _mainPageState extends State<mainPage> {
         controller: scrollController,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 50,
+
           children: [
             SizedBox(
               key: homeKey,
-              height: MediaQuery.of(context).size.height,
+              height: isMobile
+                  ? MediaQuery.of(context).size.height + 100
+                  : MediaQuery.of(context).size.height,
               child: const HomePageMain(),
             ),
             //   WobblylineAnimation(),
