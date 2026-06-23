@@ -21,13 +21,19 @@ class _HomePageMainState extends State<HomePageMain> {
       // appBar: TopBar(),
       body: HomeheroAnimation(
         child: Column(
-          spacing: isMobile ? 80 : 100,
+          spacing: isMobile ? 80 : 140,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            HomepageHeader(isMobile: isMobile),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: HomepageHeader(isMobile: isMobile),
+            ),
             HomepageSkill(isMobile: isMobile),
-            scrollD(),
+            Padding(
+              padding: EdgeInsets.only(bottom: isMobile ? 50 : 0),
+              child: scrollD(),
+            ),
           ],
         ),
       ),

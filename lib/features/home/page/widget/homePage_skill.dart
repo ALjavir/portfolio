@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import 'package:portfolio/features/home/controller/homePage_controller.dart';
 import 'package:portfolio/features/home/model/home_model.dart';
-import 'package:portfolio/style/color_style.dart';
 import 'package:portfolio/style/font_style.dart';
 import 'package:portfolio/style/icon_style.dart';
 import 'package:portfolio/theme/gWidget/global_widget.dart';

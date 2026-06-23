@@ -14,18 +14,15 @@ class _SkillpageMainState extends State<SkillpageMain> {
   Widget build(BuildContext context) {
     bool isMobile = MediaQuery.of(context).size.width < 768;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 0 : 20),
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: SkillpageHeader(isMobile: isMobile),
-          ),
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: SkillpageHeader(isMobile: isMobile),
+        ),
 
-          SkillpageCard(isMobile: isMobile),
-        ],
-      ),
+        SkillpageCard(isMobile: isMobile),
+      ],
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/animation/smoothRevealWidget_animation.dart';
-import 'package:portfolio/style/color_style.dart';
 import 'package:portfolio/style/font_style.dart';
 
 class ProjectpageinfoImage extends StatefulWidget {

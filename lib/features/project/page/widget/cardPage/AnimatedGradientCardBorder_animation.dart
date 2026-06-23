@@ -4,34 +4,52 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class AnimatedGradientCard extends StatefulWidget {
+class AnimatedGradientCardBorder extends StatefulWidget {
   final Widget child;
-  //final GlowColor glowColor;
   final List<Color> glowColor;
+  final bool isTap;
 
-  const AnimatedGradientCard({
+  const AnimatedGradientCardBorder({
     super.key,
     required this.child,
-    //this.glowColor = GlowColor.blue,
     required this.glowColor,
+    required this.isTap,
   });
 
   @override
-  State<AnimatedGradientCard> createState() => _AnimatedGradientCardState();
+  State<AnimatedGradientCardBorder> createState() =>
+      _AnimatedGradientCardState();
 }
 
-class _AnimatedGradientCardState extends State<AnimatedGradientCard>
+class _AnimatedGradientCardState extends State<AnimatedGradientCardBorder>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  bool _isHovered = false;
 
   @override
   void initState() {
     super.initState();
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600), //
     );
+    if (widget.isTap) {
+      _onHover(true);
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant AnimatedGradientCardBorder oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    // If isTap changed from false to true, kick off the gradient forward animation
+    if (widget.isTap && !oldWidget.isTap) {
+      _onHover(true);
+    }
+    // If isTap reset back to false, reverse the animation back to normal
+    else if (!widget.isTap && oldWidget.isTap) {
+      _onHover(false);
+    }
   }
 
   @override
@@ -41,7 +59,6 @@ class _AnimatedGradientCardState extends State<AnimatedGradientCard>
   }
 
   void _onHover(bool isHovered) {
-    setState(() => _isHovered = isHovered);
     if (isHovered) {
       _controller.forward();
     } else {

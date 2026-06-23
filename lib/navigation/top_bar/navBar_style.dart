@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/style/color_style.dart';
 import 'package:portfolio/style/font_style.dart';
 
 class NavbarStyle extends StatefulWidget {

@@ -20,13 +20,13 @@ class _ProjectMainState extends State<ProjectMain> {
   @override
   Widget build(BuildContext context) {
     bool isMobile = MediaQuery.of(context).size.width < 768;
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: 60,
-        children: [
-          Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      spacing: isMobile ? 80 : 140,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
             spacing: 10,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -58,34 +58,35 @@ class _ProjectMainState extends State<ProjectMain> {
               ),
             ],
           ),
-          FutureBuilder(
-            future: projectpageController.fecthProjectData(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Lottie.asset(
-                      IconStyle.primaryLoading(),
-                      options: LottieOptions(enableMergePaths: false),
-                    ),
+        ),
+        FutureBuilder(
+          future: projectpageController.fecthProjectData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: Lottie.asset(
+                    IconStyle.primaryLoading(),
+                    options: LottieOptions(enableMergePaths: false),
                   ),
-                );
-              } else if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
-              } else if (!snapshot.hasData) {
-                return Center(child: Text('No projects found'));
-              } else {
-                return ProductHomeGlowCardAnimation(
-                  projectModel: snapshot.data!,
-                  isMobile: isMobile,
-                );
-              }
-            },
-          ),
-        ],
-      ),
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData) {
+              return Center(child: Text('No projects found'));
+            } else {
+              return ProductMainCardGlowCard(
+                projectModel: snapshot.data!,
+                isMobile: isMobile,
+              );
+            }
+          },
+        ),
+        SizedBox(height: 50),
+      ],
     );
   }
 }
