@@ -75,8 +75,7 @@ class _mainPageState extends State<mainPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isMobile(BuildContext context) =>
-        MediaQuery.of(context).size.width < 768;
+    bool isMobile = MediaQuery.of(context).size.width < 768;
     return Scaffold(
       appBar: NavbarRoute(
         globalKeyHome: () => scrollTo(homeKey),
@@ -87,6 +86,7 @@ class _mainPageState extends State<mainPage> {
         //  padding: EdgeInsets.symmetric(horizontal: 20),
         controller: scrollController,
         child: Column(
+          spacing: 100,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
