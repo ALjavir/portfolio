@@ -138,7 +138,7 @@ class _MyCardState extends State<MyCard> {
       // borderRadius: BorderRadius.circular(20),
       onTap: () {
         isTap.value = true;
-        Future.delayed(Duration(seconds: 5), () {
+        Future.delayed(Duration(milliseconds: 600), () {
           Get.to(
             () => ProjectpageinfoMain(
               projectRowModel: widget.projectRowModel,
@@ -146,6 +146,8 @@ class _MyCardState extends State<MyCard> {
             ),
           );
         });
+
+        isTap.value = false;
       },
       onHover: (value) {
         isHover.value = value;

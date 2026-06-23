@@ -31,7 +31,7 @@ class _HomePageMainState extends State<HomePageMain> {
             ),
             HomepageSkill(isMobile: isMobile),
             Padding(
-              padding: EdgeInsets.only(bottom: isMobile ? 50 : 0),
+              padding: EdgeInsets.only(bottom: isMobile ? 0 : 0),
               child: scrollD(),
             ),
           ],

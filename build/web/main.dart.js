@@ -89875,8 +89875,8 @@ A.lx.prototype={}
 A.Bp.prototype={
 a6(){return new A.WP()}}
 A.WP.prototype={
-J(a){var s=null,r=A.bI(a,s,t.w).w.a.a<768,q=r?80:140,p=r?50:0
-return A.ajt(s,B.k,new A.Bq(A.dQ(A.b([new A.c0(B.nn,new A.Bs(r,s),s),new A.Bt(r,s),new A.c0(new A.b9(0,0,0,p),A.aIi("lib/assets/icon/scroll down.json",new A.qQ(!1)),s)],t.p),B.Z,B.ei,B.U,q),s))}}
+J(a){var s=null,r=A.bI(a,s,t.w).w.a.a<768,q=r?80:140
+return A.ajt(s,B.k,new A.Bq(A.dQ(A.b([new A.c0(B.nn,new A.Bs(r,s),s),new A.Bt(r,s),new A.c0(new A.b9(0,0,0,0),A.aIi("lib/assets/icon/scroll down.json",new A.qQ(!1)),s)],t.p),B.Z,B.ei,B.U,q),s))}}
 A.Bq.prototype={
 a6(){return new A.VS(null,null)}}
 A.VS.prototype={
@@ -90269,9 +90269,10 @@ A.XI.prototype={
 J(a){var s=null
 return A.abd(!1,!0,new A.jS(new A.auE(this),s),s,!0,s,s,s,s,s,s,new A.auF(this),s,new A.auG(this),s,s,s,s)}}
 A.auG.prototype={
-$0(){var s=this.a
-s.e.sl(!0)
-A.m2(A.cy(0,0,5),new A.auA(s),t.P)},
+$0(){var s=this.a,r=s.e
+r.sl(!0)
+A.m2(A.cy(0,600,0),new A.auA(s),t.P)
+r.sl(!1)},
 $S:0}
 A.auA.prototype={
 $0(){A.aVA($.cx(),new A.aux(this.a),t.z)},
