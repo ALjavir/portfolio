@@ -130,142 +130,131 @@ class MyCard extends StatefulWidget {
 class _MyCardState extends State<MyCard> {
   RxBool isHover = false.obs;
 
-  RxBool isTap = false.obs;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // borderRadius: BorderRadius.circular(20),
-      onTap: () {
-        isTap.value = true;
-        Future.delayed(Duration(seconds: 2), () {
+      onHover: (value) {
+        isHover.value = value;
+      },
+      child: AnimatedGradientCardBorder(
+        onTap: () {
           Get.to(
             () => ProjectpageinfoMain(
               projectRowModel: widget.projectRowModel,
               isMobile: widget.isMobile,
             ),
           );
-        });
+        },
+        glowColor: ColorStyle.gradientColorproduct[widget.index],
+        child: Stack(
+          alignment: AlignmentGeometry.bottomLeft,
+          children: [
+            Positioned.fill(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
 
-        isTap.value = false;
-      },
-      onHover: (value) {
-        isHover.value = value;
-      },
-      child: Obx(
-        () => AnimatedGradientCardBorder(
-          isTap: isTap.value,
-          glowColor: ColorStyle.gradientColorproduct[widget.index],
-          child: Stack(
-            alignment: AlignmentGeometry.bottomLeft,
-            children: [
-              Positioned.fill(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-
-                  child: widget.isMobile
-                      ? CachedNetworkImage(
-                          imageUrl: widget.projectRowModel.thumbImage,
-                          placeholder: (_, _) => Padding(
-                            padding: const EdgeInsets.all(80),
-                            child: Center(
-                              child: Icon(Icons.image_search_rounded, size: 80),
-                            ),
+                child: widget.isMobile
+                    ? CachedNetworkImage(
+                        imageUrl: widget.projectRowModel.thumbImage,
+                        placeholder: (_, _) => Padding(
+                          padding: const EdgeInsets.all(80),
+                          child: Center(
+                            child: Icon(Icons.image_search_rounded, size: 80),
                           ),
+                        ),
 
-                          errorWidget: (_, _, _) => Padding(
-                            padding: EdgeInsets.all(80),
-                            child: Center(
-                              child: Icon(
-                                Icons.broken_image_rounded,
-                                color: Colors.red,
-                                size: 80,
-                              ),
-                            ),
-                          ),
-
-                          fit: BoxFit.cover,
-                        )
-                      : Obx(
-                          () => AnimatedScale(
-                            scale: widget.isMobile
-                                ? 1
-                                : isHover.value
-                                ? 1.08
-                                : 1,
-
-                            duration: const Duration(milliseconds: 400),
-
-                            curve: Curves.easeOut,
-
-                            child: CachedNetworkImage(
-                              imageUrl: widget.projectRowModel.thumbImage,
-                              placeholder: (_, _) => Padding(
-                                padding: const EdgeInsets.all(80),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.image_search_rounded,
-                                    size: 80,
-                                  ),
-                                ),
-                              ),
-
-                              errorWidget: (_, _, _) => Padding(
-                                padding: EdgeInsets.all(80),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.broken_image_rounded,
-                                    color: Colors.red,
-                                    size: 80,
-                                  ),
-                                ),
-                              ),
-
-                              fit: BoxFit.cover,
+                        errorWidget: (_, _, _) => Padding(
+                          padding: EdgeInsets.all(80),
+                          child: Center(
+                            child: Icon(
+                              Icons.broken_image_rounded,
+                              color: Colors.red,
+                              size: 80,
                             ),
                           ),
                         ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                height: widget.isMobile ? 60 : 110,
-                width: double.maxFinite,
-                color: Colors.black45,
 
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                        fit: BoxFit.cover,
+                      )
+                    : Obx(
+                        () => AnimatedScale(
+                          scale: widget.isMobile
+                              ? 1
+                              : isHover.value
+                              ? 1.08
+                              : 1,
+
+                          duration: const Duration(milliseconds: 400),
+
+                          curve: Curves.easeOut,
+
+                          child: CachedNetworkImage(
+                            imageUrl: widget.projectRowModel.thumbImage,
+                            placeholder: (_, _) => Padding(
+                              padding: const EdgeInsets.all(80),
+                              child: Center(
+                                child: Icon(
+                                  Icons.image_search_rounded,
+                                  size: 80,
+                                ),
+                              ),
+                            ),
+
+                            errorWidget: (_, _, _) => Padding(
+                              padding: EdgeInsets.all(80),
+                              child: Center(
+                                child: Icon(
+                                  Icons.broken_image_rounded,
+                                  color: Colors.red,
+                                  size: 80,
+                                ),
+                              ),
+                            ),
+
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              height: widget.isMobile ? 60 : 110,
+              width: double.maxFinite,
+              color: Colors.black45,
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.projectRowModel.name,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: true,
+                    maxLines: 1,
+
+                    style: Fontstyle.sPrimaryFont(
+                      widget.isMobile ? 22 : 28,
+                      Colors.white,
+                      FontWeight.normal,
+                    ),
+                  ),
+                  if (!widget.isMobile)
                     Text(
-                      widget.projectRowModel.name,
+                      widget.projectRowModel.subName,
                       overflow: TextOverflow.ellipsis,
                       softWrap: true,
-                      maxLines: 1,
-
-                      style: Fontstyle.sPrimaryFont(
-                        widget.isMobile ? 22 : 28,
-                        Colors.white,
+                      maxLines: 2,
+                      style: Fontstyle.subFont(
+                        16,
+                        Colors.white60,
                         FontWeight.normal,
                       ),
                     ),
-                    if (!widget.isMobile)
-                      Text(
-                        widget.projectRowModel.subName,
-                        overflow: TextOverflow.ellipsis,
-                        softWrap: true,
-                        maxLines: 2,
-                        style: Fontstyle.subFont(
-                          16,
-                          Colors.white60,
-                          FontWeight.normal,
-                        ),
-                      ),
-                  ],
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

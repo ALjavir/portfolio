@@ -77,6 +77,7 @@ class _mainPageState extends State<mainPage> {
   Widget build(BuildContext context) {
     bool isMobile = MediaQuery.of(context).size.width < 768;
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: NavbarRoute(
         globalKeyHome: () => scrollTo(homeKey),
         globalKeySkill: () => scrollTo(skillKey),
@@ -86,7 +87,7 @@ class _mainPageState extends State<mainPage> {
         //  padding: EdgeInsets.symmetric(horizontal: 20),
         controller: scrollController,
         child: Column(
-          spacing: 100,
+          spacing: isMobile ? 100 : 0,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(

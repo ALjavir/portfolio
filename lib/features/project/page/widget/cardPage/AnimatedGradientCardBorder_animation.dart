@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 class AnimatedGradientCardBorder extends StatefulWidget {
   final Widget child;
   final List<Color> glowColor;
-  final bool isTap;
+  final VoidCallback onTap;
 
   const AnimatedGradientCardBorder({
     super.key,
     required this.child,
     required this.glowColor,
-    required this.isTap,
+    required this.onTap,
   });
 
   @override
@@ -24,32 +24,15 @@ class AnimatedGradientCardBorder extends StatefulWidget {
 class _AnimatedGradientCardState extends State<AnimatedGradientCardBorder>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  bool _isPressed = false;
 
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 600), //
+      duration: const Duration(milliseconds: 600),
     );
-    if (widget.isTap) {
-      _onHover(true);
-    }
-  }
-
-  @override
-  void didUpdateWidget(covariant AnimatedGradientCardBorder oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    // If isTap changed from false to true, kick off the gradient forward animation
-    if (widget.isTap && !oldWidget.isTap) {
-      _onHover(true);
-    }
-    // If isTap reset back to false, reverse the animation back to normal
-    else if (!widget.isTap && oldWidget.isTap) {
-      _onHover(false);
-    }
   }
 
   @override
@@ -70,24 +53,46 @@ class _AnimatedGradientCardState extends State<AnimatedGradientCardBorder>
   Widget build(BuildContext context) {
     final colors = widget.glowColor;
 
-    return MouseRegion(
-      onEnter: (_) => _onHover(true),
-      onExit: (_) => _onHover(false),
-      cursor: SystemMouseCursors.click,
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          return CustomPaint(
-            painter: _ProgressBorderPainter(
-              progress: _controller.value,
-              colors: colors,
-              borderRadius: 16,
-              borderWidth: 3,
-            ),
-            child: child,
-          );
-        },
-        child: Padding(padding: const EdgeInsets.all(15), child: widget.child),
+    return GestureDetector(
+      onTapDown: (_) {
+        setState(() => _isPressed = true);
+        _controller.forward();
+      },
+      // 2. User lifts finger (Hide border)
+      onTapUp: (_) {
+        setState(() => _isPressed = false);
+        _controller.reverse();
+      },
+      // 3. User decides to scroll instead of tap (Cancel border)
+      onTapCancel: () {
+        setState(() => _isPressed = false);
+        _controller.reverse();
+      },
+      onTap: widget.onTap,
+
+      // 4. Instantly trigger your navigation!
+      child: MouseRegion(
+        onEnter: (_) => _onHover(true),
+        onExit: (_) => _onHover(false),
+        cursor: SystemMouseCursors.click,
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            return CustomPaint(
+              painter: _ProgressBorderPainter(
+                progress: _controller.value,
+                colors: colors,
+                borderRadius: 16,
+                borderWidth: 3,
+              ),
+              child: child,
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: widget.child,
+          ),
+        ),
       ),
     );
   }
