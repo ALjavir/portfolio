@@ -34,6 +34,7 @@ class _HomePageMainState extends State<HomePageMain> {
               padding: EdgeInsets.only(bottom: isMobile ? 0 : 0),
               child: scrollD(),
             ),
+            //   isMobile ? SizedBox(height: 50) : SizedBox.shrink(),
           ],
         ),
       ),

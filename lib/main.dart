@@ -87,8 +87,8 @@ class _mainPageState extends State<mainPage> {
         //  padding: EdgeInsets.symmetric(horizontal: 20),
         controller: scrollController,
         child: Column(
-          spacing: isMobile ? 100 : 0,
           crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 50,
           children: [
             SizedBox(
               key: homeKey,
