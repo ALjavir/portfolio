@@ -51,7 +51,7 @@ class _NavbarRouteState extends State<NavbarRoute> {
                 child: Text(
                   'Al  Javir_.',
                   style: Fontstyle.topBarFont(
-                    isMobile ? 20 : 28,
+                    isMobile ? 22 : 28,
                   ).copyWith(height: 1.0),
                 ),
               ),
