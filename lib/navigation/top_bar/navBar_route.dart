@@ -25,75 +25,80 @@ class NavbarRoute extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _NavbarRouteState extends State<NavbarRoute> {
-  bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 768;
   RxBool isMenuOpen = false.obs;
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.width < 768;
     return AppBar(
       backgroundColor: Colors.black,
       forceMaterialTransparency: true,
       surfaceTintColor: Colors.black,
       shadowColor: Colors.black,
-
-      toolbarHeight: 90,
+      centerTitle: true,
+      toolbarHeight: 150,
       automaticallyImplyLeading: false,
       titleSpacing: 0,
-      title: ClipRRect(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 0, 0, 5),
-              child: Text(
-                'Al  Javir_.',
-                style: Fontstyle.topBarFont(isMobile(context) ? 24 : 28),
+      title: Container(
+        padding: EdgeInsets.all(isMobile ? 0 : 20),
+        // color: Colors.amber,
+        child: ClipRRect(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                child: Text(
+                  'Al  Javir_.',
+                  style: Fontstyle.topBarFont(
+                    isMobile ? 20 : 28,
+                  ).copyWith(height: 1.0),
+                ),
               ),
-            ),
 
-            if (!isMobile(context))
+              if (!isMobile)
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: 20,
+                  children: [
+                    NavbarStyle(
+                      routeName: 'Home',
+                      path: widget.globalKeyHome,
+                      num: 1,
+                      showTopBar: true,
+                    ),
+                    NavbarStyle(
+                      routeName: 'Skill',
+                      path: widget.globalKeySkill,
+                      num: 2,
+                      showTopBar: true,
+                    ),
+                    NavbarStyle(
+                      routeName: 'Project',
+                      path: widget.globalKeyProject,
+                      num: 3,
+                      showTopBar: true,
+                    ),
+                    NavbarStyle(
+                      routeName: 'Contract',
+                      path: widget.globalKeyHome,
+                      num: 4,
+                      showTopBar: true,
+                    ),
+                  ],
+                ),
               Row(
                 mainAxisSize: MainAxisSize.min,
-                spacing: 20,
                 children: [
-                  NavbarStyle(
-                    routeName: 'Home',
-                    path: widget.globalKeyHome,
-                    num: 1,
-                    showTopBar: true,
-                  ),
-                  NavbarStyle(
-                    routeName: 'Skill',
-                    path: widget.globalKeySkill,
-                    num: 2,
-                    showTopBar: true,
-                  ),
-                  NavbarStyle(
-                    routeName: 'Project',
-                    path: widget.globalKeyProject,
-                    num: 3,
-                    showTopBar: true,
-                  ),
-                  NavbarStyle(
-                    routeName: 'Contract',
-                    path: widget.globalKeyHome,
-                    num: 4,
-                    showTopBar: true,
-                  ),
+                  if (isMobile)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: menuButton(),
+                    ),
                 ],
               ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (isMobile(context))
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15),
-                    child: menuButton(),
-                  ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
